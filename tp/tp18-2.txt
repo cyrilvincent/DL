@@ -1,0 +1,20 @@
+Deep Learning
+=============
+1- Lire mnist/breast-cancer/wdbc.names
+2- Charger wdbc.data
+3- Créer X avec les datas et y avec les targets
+4- Vérifier que vous obtenez le même résultat qu'avec ce code
+from sklearn.datasets import load_breast_cancer
+cancer = load_breast_cancer()
+X=cancer['data']
+y=cancer['target']
+5- Randomiser
+6- Normaliser (scaller) les données
+7- Entrainer le réseau de neurone (3 * 30)
+8- Calculer la matrice de confusion
+9- Afficher le classification-report
+10- Améliorer le modèle en modifiant les layers pour abaisser les faux négatifs
+11- Améliorer le modèle en modifiant l'activation et le solver pour abaisser les faux négatifs
+12- Estimer le nombre de neurones et le nombre de layer
+13- Reentrainer le modèle avec vos neurones et layers
+14- Solidifer le meilleur modèle

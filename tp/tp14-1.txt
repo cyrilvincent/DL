@@ -1,0 +1,17 @@
+kNN
+===
+1- Charger iris
+iris = ds.fetch_mldata('iris',data_home='./mnist/')
+2- Créer le dataset
+sample = np.random.randint(150, size=100)
+data = iris.data[sample]
+target = iris.target[sample]
+3- Filtrer le dataset
+data = data[:, :2]
+4- Randomiser le dataset
+5- Apprendre le modèle kNN avec k = 3
+6- Apprendre le modèle kNN avec 1 < k < 10 et afficher les erreurs
+7- Choisir le meilleur k
+8- Afficher les prédictions
+9- Saisir le ratio des tiges et le ratio des pétales et afficher le résultat
+10- Recommencer sans le sample de la question 2

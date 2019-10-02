@@ -1,0 +1,9 @@
+kNN Audio et solidification
+===========================
+1- Charger le dataframe solidifié de ESC-50
+2- Rejouer le kNN solidifié de ESC-50
+2- Apprendre avec Random Forest (n_estimators=500)
+3- Apprendre avec SVM (C=0.1, kernel='linear')
+4- Comparer les modèles
+5- Solidifier le meilleur modèle
+

@@ -1,0 +1,6 @@
+Mesures
+=======
+1/ Charger csv/mesures.csv
+2/ Trouver les défauts de tension (abs(am-at)>delta)
+3/ Trouver les défauts de courant (abs(vm-vt)>delta)
+4/ Renvoyer tous les tuples ayant un défaut

@@ -1,0 +1,9 @@
+Breast Cancer
+=============
+1/ Créer un script Python qui effectue le code suivant
+    from sklearn.datasets import load_breast_cancer
+    cancer = load_breast_cancer() # more info : https://goo.gl/U2Uwz2
+    X=cancer['data']
+    y=cancer['target']
+2/ Etudier X et y (une tumeur est benine ou maline)
+3/ Appliquer kNN, avous de choisir k

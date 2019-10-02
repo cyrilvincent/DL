@@ -1,0 +1,5 @@
+Semi-supervisé
+==============
+1/ Récupérer les données de ESC-US sur https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/YDEPUT
+2/ Charger les données dans le dataset avec la catégorie -1
+3/ Tester LabelPropagation
