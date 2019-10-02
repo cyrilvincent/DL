@@ -2,9 +2,6 @@ import tensorflow as tf
 import tensorflow.keras as keras
 import pandas as pd
 
-print(tf.VERSION)
-print(keras.__version__)
-
 dataset = pd.read_csv("house/house.csv")
 print(dataset.shape) # 542 * 2
 print(dataset.head())
@@ -32,7 +29,6 @@ model = keras.Sequential([
   ])
 
 model.compile(loss='mse',
-                optimizer=tf.train.RMSPropOptimizer(0.001),
                 metrics=['mae'])
 
 model.summary()
@@ -46,7 +42,6 @@ print(mae)
 
 model_json = model.to_json()
 print(model_json)
-model.save('25-keras.h5')
-#model.save('24-keras.tf')
+model.save('house/25-keras.h5')
 
 #Netron

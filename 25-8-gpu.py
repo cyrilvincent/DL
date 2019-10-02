@@ -1,19 +1,17 @@
 import tensorflow as tf
 import keras
 
-from keras import backend as K
-print(K.tensorflow_backend._get_available_gpus())
-print(K.tensorflow_backend._LOCAL_DEVICES)
-
 # Force la prise en compte de 2 GPU et 4 CPU
-config = tf.ConfigProto( device_count = {'GPU': 2 , 'CPU': 4} )
-sess = tf.Session(config=config)
-keras.backend.set_session(sess)
+gpus = tf.config.experimental.list_physical_devices('GPU')
+cpus = tf.config.experimental.list_physical_devices('CPU')
+try:
+    tf.config.experimental.set_visible_devices(gpus[:1], 'GPU')
+    tf.config.experimental.set_visible_devices(cpus[:3], 'CPU')
+except:
+    pass
 
 # Il suffit ensuite de créer le model (ici sans GPU et un seul CPU !)
-config = tf.ConfigProto( device_count = {'GPU': 0 , 'CPU': 1} )
-sess = tf.Session(config=config)
-keras.backend.set_session(sess)
+tf.config.experimental.set_visible_devices(cpus[0])
 from sklearn.datasets import load_breast_cancer
 cancer = load_breast_cancer() # more info : https://goo.gl/U2Uwz2
 X=cancer['data']
