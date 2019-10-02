@@ -1,6 +1,0 @@
-Mesures
-=======
-1- Refaire le tp mesure avec Pandas
-
-
-

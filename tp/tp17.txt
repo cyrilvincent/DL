@@ -1,4 +1,0 @@
-Jupyter
-=======
-1- Afficher différentes courbes dans Jupyter
-2- Afficher les loyers et sa regression linéaire

@@ -1,4 +1,6 @@
-import tensorflow as tf
+#import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
 # Start 08-4-cluster-1 and 08-4-cluster-2 before
 a = tf.constant(1)

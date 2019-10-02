@@ -1,9 +1,0 @@
-kNN Audio et solidification
-===========================
-1- Charger le dataframe de ESC-50
-2- Solidifier le dataframe
-3- Apprendre avec kNN k=8
-4- Afficher le (mauvais) taux d'erreur
-5- Comparer ce taux avec le taux humain de esc50-human.xlsx
-6- Solidifier le modèle
-7- Rejouer le modèle solidifié

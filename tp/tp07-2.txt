@@ -1,3 +1,0 @@
-Fourier
-=======
-1- Transformée de Fourier

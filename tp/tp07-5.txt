@@ -1,3 +1,0 @@
-SciPy
-=====
-1/ Calculer la regression linéaire de house.csv avec SciPy

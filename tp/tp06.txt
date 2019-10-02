@@ -1,9 +1,0 @@
-Matplotlib
-==========
-01- Ouvrir et comprendre 04-python.py
-02- Afficher un binome du second degré
-03- Afficher une trinome du troisième degré
-04- Afficher une sinusoidale
-05- Afficher une tangeante hyperbolique
-06- Afficher une sigmoide
-07- Afficher tous les diagrammes sur un même graphisme
