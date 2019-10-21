@@ -1,6 +1,5 @@
 #import tensorflow as tf
 import tensorflow.compat.v1 as tf
-tf.disable_v2_behavior()
 task_index = 0 #TODO
 cluster = tf.train.ClusterSpec({"myjob": ["192.168.1.00:2222", #TODO
                                           "192.168.1.00:2222",

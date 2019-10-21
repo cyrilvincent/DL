@@ -12,8 +12,6 @@ X_test = scaler.transform(X_test)
 print(X_train.shape)
 print(X_test)
 
-#from sklearn.neural_network import MLPClassifier
-#mlp = MLPClassifier(hidden_layer_sizes=(30,30,30))
 import tensorflow as tf
 import tensorflow.keras as keras
 model = keras.Sequential([
@@ -21,13 +19,12 @@ model = keras.Sequential([
                        input_shape=(X_train.shape[1],)),
     keras.layers.Dense(30, activation=tf.nn.relu),
     keras.layers.Dense(30, activation=tf.nn.relu),
-    keras.layers.Dense(30, activation=tf.nn.relu),
     keras.layers.Dense(1)
   ])
 
 #model.compile(loss="mse", optimizer="sgd")
 #sgd = keras.optimizers.SGD(nesterov=True, lr=1e-5)
-model.compile(loss="mse", optimizer="adam")
+model.compile(loss="mse", optimizer="adam",metrics=['accuracy'])
 model.summary()
 
 history = model.fit(X_train, y_train, epochs=2000)

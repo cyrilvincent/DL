@@ -8,7 +8,7 @@ from keras.applications.vgg16 import VGG16
 # load the model
 model = VGG16()
 # load an image from file
-image = load_img('img/ski.jpg', target_size=(224, 224))
+image = load_img('img/mug.jpg', target_size=(224, 224))
 # convert the image pixels to a numpy array
 image = img_to_array(image)
 # reshape data for the model : (nbsample, length, width, colordepth)

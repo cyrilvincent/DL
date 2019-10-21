@@ -1,83 +1,13 @@
-import tensorflow as tf
-
 import keras
 from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D, AveragePooling2D
-from keras.layers import Dense, Activation, Dropout, Flatten
+from keras.layers import Dense, Dropout, Flatten
 
 from keras.preprocessing import image
-from keras.preprocessing.image import ImageDataGenerator
 
 import numpy as np
 import matplotlib.pyplot as plt
 
-# ------------------------------
-# cpu - gpu configuration
-config = tf.ConfigProto(device_count={'GPU': 0, 'CPU': 56})  # max: 1 gpu, 56 cpu
-sess = tf.Session(config=config)
-#keras.backend.set_session(sess)
-# ------------------------------
-# variables
-num_classes = 7  # angry, disgust, fear, happy, sad, surprise, neutral
-batch_size = 256
-epochs = 5
-# ------------------------------
-# read kaggle facial expression recognition challenge dataset (fer2013.csv)
-# https://www.kaggle.com/c/challenges-in-representation-learning-facial-expression-recognition-challenge
-
-with open("facenet/fer2013.csv") as f:
-    content = f.readlines()
-
-lines = np.array(content)
-
-num_of_instances = lines.size
-print("number of instances: ", num_of_instances)
-print("instance length: ", len(lines[1].split(",")[1].split(" ")))
-
-# ------------------------------
-# initialize trainset and test set
-x_train, y_train, x_test, y_test = [], [], [], []
-
-# ------------------------------
-# transfer train and test set data
-for i in range(1, num_of_instances):
-    try:
-        emotion, img, usage = lines[i].split(",")
-
-        val = img.split(" ")
-
-        pixels = np.array(val, 'float32')
-
-        emotion = keras.utils.to_categorical(emotion, num_classes)
-
-        if 'Training' in usage:
-            y_train.append(emotion)
-            x_train.append(pixels)
-        elif 'PublicTest' in usage:
-            y_test.append(emotion)
-            x_test.append(pixels)
-    except:
-        print("", end="")
-
-# ------------------------------
-# data transformation for train and test sets
-x_train = np.array(x_train, 'float32')
-y_train = np.array(y_train, 'float32')
-x_test = np.array(x_test, 'float32')
-y_test = np.array(y_test, 'float32')
-
-x_train /= 255  # normalize inputs between [0, 1]
-x_test /= 255
-
-x_train = x_train.reshape(x_train.shape[0], 48, 48, 1)
-x_train = x_train.astype('float32')
-x_test = x_test.reshape(x_test.shape[0], 48, 48, 1)
-x_test = x_test.astype('float32')
-
-print(x_train.shape[0], 'train samples')
-print(x_test.shape[0], 'test samples')
-# ------------------------------
-# construct CNN structure
 model = Sequential()
 
 # 1st convolution layer
@@ -102,7 +32,7 @@ model.add(Dropout(0.2))
 model.add(Dense(1024, activation='relu'))
 model.add(Dropout(0.2))
 
-model.add(Dense(num_classes, activation='softmax'))
+model.add(Dense(7, activation='softmax'))
 # ------------------------------
 # batch process
 
@@ -116,24 +46,9 @@ model.compile(loss='categorical_crossentropy'
 
 # ------------------------------
 
-fit = False
-
-if fit == True:
-    gen = ImageDataGenerator()
-    train_generator = gen.flow(x_train, y_train, batch_size=batch_size)
-    model.fit_generator(train_generator, steps_per_epoch=batch_size, epochs=epochs)  # train for randomly selected one
-else:
-    model.load_weights('facenet/facial_expression_model_weights.h5')  # load weights
+model.load_weights('facenet/facial_expression_model_weights.h5')  # load weights
 
 # ------------------------------
-"""
-#overall evaluation
-score = model.evaluate(x_test, y_test)
-print('Test loss:', score[0])
-print('Test accuracy:', 100*score[1])
-"""
-
-
 # ------------------------------
 # function for drawing bar chart for emotion preditions
 def emotion_analysis(emotions):
@@ -148,37 +63,7 @@ def emotion_analysis(emotions):
     plt.show()
 
 
-# ------------------------------
-
-monitor_testset_results = False
-
-if monitor_testset_results == True:
-    # make predictions for test set
-    predictions = model.predict(x_test)
-
-    index = 0
-    for i in predictions:
-        if index < 30 and index >= 20:
-            # print(i) #predicted scores
-            # print(y_test[index]) #actual scores
-
-            testing_img = np.array(x_test[index], 'float32')
-            testing_img = testing_img.reshape([48, 48]);
-
-            plt.gray()
-            plt.imshow(testing_img)
-            plt.show()
-
-            print(i)
-
-            emotion_analysis(i)
-            print("----------------------------------------------")
-        index = index + 1
-
-# ------------------------------
-# make prediction for custom image out of test set
-
-img = image.load_img("facenet/monalisa.png", grayscale=True, target_size=(48, 48))
+img = image.load_img("facenet/jackman.png", grayscale=True, target_size=(48, 48))
 
 x = image.img_to_array(img)
 x = np.expand_dims(x, axis=0)
