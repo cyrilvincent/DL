@@ -145,7 +145,7 @@ print(y_val.shape)
 # Try replacing GRU, or SimpleRNN.
 RNN = layers.LSTM
 HIDDEN_SIZE = 128
-BATCH_SIZE = 128
+BATCH_SIZE = 1
 LAYERS = 1
 
 print('Build model...')

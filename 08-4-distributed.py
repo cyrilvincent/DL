@@ -1,5 +1,4 @@
-#import tensorflow as tf
-import tensorflow.compat.v1 as tf
+import tensorflow as tf
 
 # Start 08-4-cluster-1 and 08-4-cluster-2 before
 a = tf.constant(1)

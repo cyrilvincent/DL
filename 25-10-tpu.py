@@ -1,6 +1,6 @@
 import tensorflow as tf
 import tensorflow_datasets as tfds
-tfds.disable_progress_bar()
+
 
 BUFFER_SIZE = 10000
 BATCH_SIZE = 64
@@ -34,26 +34,24 @@ def build_and_compile_cnn_model():
       metrics=['accuracy'])
   return model
 
-print("Single Worker")
-single_worker_model = build_and_compile_cnn_model()
-single_worker_model.fit(x=train_datasets, epochs=3)
-
-import os
-import json
-os.environ['TF_CONFIG'] = json.dumps({
-    'cluster': {
-        'worker': ["127.0.0.1:2222", "192.168.1.70:2222"]
-    },
-    'task': {'type': 'worker', 'index': 0}
-})
-
-strategy = tf.distribute.experimental.MultiWorkerMirroredStrategy()
+tpu_address = "grpc://cyrilvincent38"
+#https://cloud.google.com/tpu
+#A partir de 1.49$/h
+#https://cloud.google.com/tpu/docs/quickstart
+#gcloud auth login
+#gcloud config set project projetia-256819
+cluster_resolver = tf.distribute.cluster_resolver.TPUClusterResolver(
+    tpu=tpu_address)
+tf.config.experimental_connect_to_cluster(cluster_resolver)
+tf.tpu.experimental.initialize_tpu_system(cluster_resolver)
+strategy = tf.distribute.experimental.TPUStrategy(cluster_resolver)
 
 NUM_WORKERS = 2
 # Here the batch size scales up by number of workers since
 # `tf.data.Dataset.batch` expects the global batch size. Previously we used 64,
 # and now this becomes 128.
 GLOBAL_BATCH_SIZE = 64 * NUM_WORKERS
+#with tf.device('/job:worker'):
 with strategy.scope():
   # Creation of dataset, and model building/compiling need to be within
   # `strategy.scope()`.
