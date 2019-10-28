@@ -3,7 +3,7 @@ from keras.layers.core import Flatten, Dense, Dropout, Input
 from keras.layers.convolutional import Convolution2D, MaxPooling2D, ZeroPadding2D
 
 def VGG_16(weights_path=None):
-    vis_input = Input(shape=(3,224,224), name="VGG16")
+    vis_input = Input(shape=(224,224,3), name="VGG16")
     x = ZeroPadding2D((1, 1))(vis_input)
     x = Convolution2D(64, 3, 3, activation='relu')(x)
     x = ZeroPadding2D((1, 1))(x)
