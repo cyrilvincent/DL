@@ -29,12 +29,15 @@ model.add(Activation('relu'))
 model.add(MaxPooling2D(pool_size=(2, 2))) #(18,18,64)
 
 model.add(Flatten()) #20736
-model.add(Dense(64))
+model.add(Dense(1024))
+model.add(Activation('relu'))
+model.add(Dropout(0.5))
+model.add(Dense(1024))
 model.add(Activation('relu'))
 model.add(Dropout(0.5))
 model.add(Dense(9, activation='softmax'))
 
-model.compile(loss='categorical_crossentropy',
+model.compile(loss='categorical_crossentropy', # try sparse_categorical_entropy
               optimizer='rmsprop',
               metrics=['accuracy'])
 
