@@ -2,6 +2,8 @@ import os
 import json
 
 path = f"chest_xray"
+path = "state-farm-distracted-driver-detection/train"
+path="dogsvscats/train"
 db = {"path":path, "lum":-1,"std":-1,"lummin":-1,"lummax":-1, "count":0, "data":[] }
 id = 0
 
