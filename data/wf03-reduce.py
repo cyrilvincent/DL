@@ -4,6 +4,8 @@ from PIL import Image, ImageStat, ImageEnhance
 
 path = "chest_xray"
 outpath = "chest-xray-224"
+path = "state-farm-distracted-driver-detection/train"
+outpath = "state-farm-distracted-driver-detection/train-224"
 
 def reduce(path, size = 224, method = Image.LANCZOS):
     print(f"Open {path}/db.json")

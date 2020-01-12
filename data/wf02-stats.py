@@ -2,20 +2,22 @@ from PIL import Image, ImageStat
 import json
 
 path = f"chest_xray"
+path = "state-farm-distracted-driver-detection/train"
 
 def scan(path):
     with open(f"{path}/db.json", "r") as f:
         db = json.loads(f.read())
     for item in db["data"]:
-        file = f"{item['path']}/{item['name']}"
-        print(f"Open {file}")
-        im = Image.open(file)
-        stat = ImageStat.Stat(im)
-        item["lum"] = int(stat.mean[0])
-        item["std"] = int(stat.stddev[0])
-        item["lummin"] = stat.extrema[0][0]
-        item["lummax"] = stat.extrema[0][1]
-        item["size"] = im.size
+        if item["name"].endswith(".jpg") or item["name"].endswith(".jpeg"):
+            file = f"{item['path']}/{item['name']}"
+            print(f"Open {file}")
+            im = Image.open(file)
+            stat = ImageStat.Stat(im)
+            item["lum"] = int(stat.mean[0])
+            item["std"] = int(stat.stddev[0])
+            item["lummin"] = stat.extrema[0][0]
+            item["lummax"] = stat.extrema[0][1]
+            item["size"] = im.size
     db["lummin"] = min([item["lummin"] for item in db["data"]])
     db["lummax"] = max([item["lummax"] for item in db["data"]])
     db["lum"] = int(sum([item["lum"] for item in db["data"]]) / db["count"])
