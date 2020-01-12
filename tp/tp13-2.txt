@@ -1,8 +1,0 @@
-Randomization
-=============
-1- Créer Xtrain, ytrain, Xtest, ytest en randomization 80%/20%
-2- Apprendre le modèle randomisé
-3- Afficher les prédictions
-4- Afficher l'erreur de prédiction
-import sklearn.metrics as m
-print(math.sqrt(m.mean_squared_error(regr.predict(xtest), ytest))) # 537

@@ -1,8 +1,0 @@
-SKLearn
-=======
-1- Créer une LinearRegression à partir des données de house.csv
-2- Apprendre le modèle
-3- Afficher la prédiction
-4- Afficher 1 - la racine carrée du score de la régression
-5- Afficher la pente de la regression .coef_[0][1] et son intersection à 0 .intercept_[0]
-6- Afficher la prédiction sur matplotlib
