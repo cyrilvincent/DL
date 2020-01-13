@@ -45,16 +45,17 @@ model.summary()
 
 hist = model.fit(x=x_train,y=y_train, epochs=10, batch_size=32, validation_data=(x_test, y_test))
 
-model.save_weights('data/h5/cholletmodel-mnist-weights.h5')
+model.save_weights('data/h5/cholletmodel-mnist-weights.h5') # 97.5%
 
 import matplotlib.pyplot as plt
 f, ax = plt.subplots()
-ax.plot([None] + hist.history['acc'], 'o-')
-ax.plot([None] + hist.history['val_acc'], 'x-')
-ax.legend(['Train acc', 'Validation acc'], loc = 0)
-ax.set_title('Training/Validation acc per Epoch')
+ax.plot([None] + hist.history['accuracy'], 'o-')
+ax.plot([None] + hist.history['val_accuracy'], 'x-')
+ax.legend(['Train accuracy', 'Validation accuracy'], loc = 0)
+ax.set_title('Training/Validation accuracy per Epoch')
 ax.set_xlabel('Epoch')
-ax.set_ylabel('acc')
+ax.set_ylabel('Accuracy')
+plt.show()
 
 test_score = model.evaluate(x_test, y_test)
-print("Test accuracy {:.2f}%".format(test_score[0], test_score[1] * 100))
+print("Test accuracy {:.2f}%".format(test_score[1] * 100))
