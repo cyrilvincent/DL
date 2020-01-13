@@ -1,33 +1,25 @@
-import sklearn.datasets as ds
-mnist = ds.fetch_mldata('MNIST original',data_home='./mnist/')
+import tensorflow.keras as keras
 
-import numpy as np
-sample = np.random.randint(70000, size=5000)
-data = mnist.data[sample]
-target = mnist.target[sample]
-print(len(data))
+(x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data()
 
-import sklearn.model_selection as ms
-xtrain, xtest, ytrain, ytest = ms.train_test_split(data, target, train_size=0.8, test_size=0.2)
+x_train = x_train.reshape(-1, 28 * 28)
+x_test = x_test.reshape(-1, 28 * 28)
+
 
 import sklearn.ensemble as rf
 model = rf.RandomForestClassifier(n_estimators=100)
-model.fit(xtrain, ytrain)
-score = model.score(xtest, ytest)
+model.fit(x_train, y_train)
+score = model.score(x_test, y_test)
 print('Score: %f' % score)
 
-# On récupère les prédictions sur les données test
-predicted = model.predict(xtest)
+predicted = model.predict(x_test)
 
+images = x_test.reshape((-1, 28, 28))
 
-# On redimensionne les données sous forme d'images
-images = xtest.reshape((-1, 28, 28))
-
-# On selectionne un echantillon de 12 images au hasard
+import numpy as np
 select = np.random.randint(images.shape[0], size=12)
 
 import matplotlib.pyplot as plt
-# On affiche les images avec la prédiction associée
 for index, value in enumerate(select):
     plt.subplot(3,4,index+1)
     plt.axis('off')
@@ -36,16 +28,12 @@ for index, value in enumerate(select):
 
 plt.show()
 
-# Gestion des erreurs
-# on récupère les données mal prédites
-misclass = (ytest != predicted)
+misclass = (y_test != predicted)
 misclass_images = images[misclass,:,:]
 misclass_predicted = predicted[misclass]
 
-# on sélectionne un échantillon de ces images
 select = np.random.randint(misclass_images.shape[0], size=12)
 
-# on affiche les images et les prédictions (erronées) associées à ces images
 for index, value in enumerate(select):
     plt.subplot(3,4,index+1)
     plt.axis('off')
