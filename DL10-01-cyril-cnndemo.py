@@ -10,7 +10,7 @@ s = "Dog"
 if res < 0.5:
     s = "Cat"
     res = 1 - res
-print(f"Prediction: {s} ({res*100:.0f}%) with accuracy 87%")
+print(f"Prediction: {s} ({res*100:.0f}%) with accuracy 90%")
 
 
 
