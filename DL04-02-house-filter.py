@@ -4,7 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # On charge le dataset
-house_data = pd.read_csv('../data/house/house.csv')
+house_data = pd.read_csv('data/house/house.csv')
 
 surface_max = 300
 house_data = house_data[house_data.surface < surface_max]

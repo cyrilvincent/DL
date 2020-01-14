@@ -1,10 +1,12 @@
-import sklearn.datasets as ds
-mnist = ds.fetch_mldata('MNIST original',data_home='./mnist/')
-
 import numpy as np
-sample = np.random.randint(70000, size=5000)
-data = mnist.data[sample]
-target = mnist.target[sample]
+
+with np.load("data/mnist/mnist.npz", allow_pickle=True) as f:
+    x_train, y_train = f['x_train'], f['y_train']
+    x_test, y_test = f['x_test'], f['y_test']
+
+sample = np.random.randint(60000, size=5000)
+data = x_train[sample]
+target = y_train[sample]
 
 # On redimensionne les données sous forme d'images
 images = data.reshape((-1, 28, 28))

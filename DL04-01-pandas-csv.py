@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # On charge le dataset
-house_data = pd.read_csv('../data/house/house.csv')
+house_data = pd.read_csv('data/house/house.csv')
 
 print(house_data)
 
