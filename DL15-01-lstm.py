@@ -2,10 +2,10 @@
 This network is used to predict the next frame of an artificially
 generated movie which contains moving squares.
 """
-from keras.models import Sequential
-from keras.layers.convolutional import Conv3D
-from keras.layers.convolutional_recurrent import ConvLSTM2D
-from keras.layers.normalization import BatchNormalization
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Conv3D
+from tensorflow.keras.layers import ConvLSTM2D
+from tensorflow.keras.layers import BatchNormalization
 import numpy as np
 import pylab as plt
 

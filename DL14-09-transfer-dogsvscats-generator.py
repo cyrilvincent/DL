@@ -21,7 +21,11 @@ model.compile(loss='binary_crossentropy',
               optimizer="rmsprop",
               metrics=['accuracy'])
 
-trainset = keras.preprocessing.image.ImageDataGenerator(rescale=1. / 255, validation_split=0.2)
+trainset = keras.preprocessing.image.ImageDataGenerator(rescale=1. / 255, validation_split=0.2,
+    shear_range=0.2,
+    zoom_range=0.2,
+    horizontal_flip=True)
+
 
 batchSize = 16
 
