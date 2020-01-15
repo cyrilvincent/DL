@@ -9,7 +9,7 @@ model.add(keras.layers.Activation("relu"))
 model.add(keras.layers.Dense(1))
 
 model.compile(optimizer='rmsprop',
-              loss='categorical_crossentropy',
+              loss='cmse',
               metrics=['accuracy'])
 
 model.summary()

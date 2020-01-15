@@ -16,7 +16,18 @@ model = keras.Sequential([
 model.compile(loss="mse", optimizer="rmsprop",metrics=['accuracy'])
 model.summary()
 
-history = model.fit(X, y, epochs=200, batch_size=10)
+hist = model.fit(X, y, epochs=200, batch_size=10)
 eval = model.evaluate(X, y)
 print(eval)
+preds = model.predict(X)
+print(X - preds)
+
+import matplotlib.pyplot as plt
+f, ax = plt.subplots()
+ax.plot([None] + hist.history['accuracy'], 'o-')
+ax.legend(['Train accuracy'], loc = 0)
+ax.set_title('Accuracy per Epoch')
+ax.set_xlabel('Epoch')
+ax.set_ylabel('Accuracy')
+plt.show()
 

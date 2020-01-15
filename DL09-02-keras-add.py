@@ -13,8 +13,8 @@ X=np.array(X, dtype=float)
 y=np.array(y, dtype=float)
 print(X)
 print(y)
-X = X / 7
-y = y / 7
+X = (X - 3.5) / 3.5 # 0 center
+y = (y - 3.5) / 3.5
 
 import tensorflow.keras as keras
 model = keras.Sequential([
@@ -33,7 +33,7 @@ res = model.predict(X)
 print(res)
 for i in range(8):
     for j in range(8):
-        predict = int(round(res[i * 8 + j][0] * 7))
+        predict = int(round(res[i * 8 + j][0] * 3.5 + 3.5))
         print(f"{i}+{j}={predict} {i+j==predict}")
 
 

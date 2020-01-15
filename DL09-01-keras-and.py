@@ -1,7 +1,7 @@
 import numpy as np
 
 X=np.array([[0,0],[0,1],[1,0],[1,1]])
-y=np.array([0,0,0,1])
+y=np.array([-1,-1,-1,1]) # 0 center
 
 import tensorflow.keras as keras
 model = keras.Sequential([
@@ -17,5 +17,5 @@ history = model.fit(X, y, epochs=100, batch_size=1)
 
 res = model.predict(X)
 print(res)
-print(res > 0.5)
+print(res > 0)
 
