@@ -1,5 +1,5 @@
 # example of loading the generator model and generating images
-from keras.models import load_model
+from tensorflow.keras.models import load_model
 from numpy.random import randn
 from matplotlib import pyplot
 

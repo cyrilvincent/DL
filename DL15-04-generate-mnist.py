@@ -116,7 +116,7 @@ def save_plot(examples, epoch, n=10):
 		# plot raw pixel data
 		pyplot.imshow(examples[i, :, :, 0], cmap='gray_r')
 	# save plot to file
-	filename = 'generated_plot_e%03d.png' % (epoch+1)
+	filename = 'data/mnist/generated_plot_e%03d.png' % (epoch+1)
 	pyplot.savefig(filename)
 	pyplot.close()
 
