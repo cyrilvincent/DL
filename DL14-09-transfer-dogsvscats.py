@@ -17,6 +17,8 @@ model = keras.models.Model(inputs=model.input, outputs=x)
 
 model.summary()
 
+keras.utils.plot_model(model, to_file='data/h5/model.png', show_shapes=True, show_layer_names=True)
+
 model.compile(loss='binary_crossentropy',
               optimizer="rmsprop",
               metrics=['accuracy'])

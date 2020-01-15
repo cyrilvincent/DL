@@ -7,9 +7,12 @@ for layer in model.layers[:25]:
 
 x = model.output
 x = keras.layers.Flatten()(x)
-x = keras.layers.Dense(30, activation="relu")(x)
-x = keras.layers.Dense(30, activation="relu")(x)
+x = keras.layers.Dense(256, activation="relu")(x)
+x = keras.layers.Dropout(0.2)(x)
+x = keras.layers.Dense(128, activation="relu")(x)
+x = keras.layers.Dropout(0.2)(x)
 x =  keras.layers.Dense(30, activation="relu")(x)
+x = keras.layers.Dropout(0.2)(x)
 x = keras.layers.Dense(3, activation="softmax")(x)
 
 model = keras.models.Model(inputs=model.input, outputs=x)
@@ -51,8 +54,8 @@ model.fit(
         callbacks=[checkpointer]
 )
 
-model.save('data/dogsvscats/vgg16-cows-model.h5')
-model.save_weights('data/dogsvscats/vgg16-cows-model-weights.h5')
+model.save('data/dogsvscats/vgg16model-cows.h5')
+model.save_weights('data/dogsvscats/vgg16model-cows-weights.h5')
 
 
 

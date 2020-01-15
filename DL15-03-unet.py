@@ -1,4 +1,4 @@
-import tensorflow.karas as keras
+import tensorflow.keras as keras
 
 def conv2d_block(input_tensor, n_filters, kernel_size=3):
     x = keras.layers.Conv2D(filters=n_filters, kernel_size=(kernel_size, kernel_size),
