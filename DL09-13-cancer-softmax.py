@@ -24,6 +24,7 @@ model = keras.Sequential([
   ])
 
 model.compile(loss="categorical_crossentropy", optimizer="rmsprop",metrics=['accuracy'])
+# for 2 categories bce ~= cce
 model.summary()
 
 history = model.fit(X, y, epochs=200, batch_size=10, validation_split=0.2)

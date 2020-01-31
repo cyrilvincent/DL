@@ -59,14 +59,6 @@ def train():
             subset = 'validation',
             batch_size=batchSize)
 
-    # model.fit_generator(
-    #         trainGenerator,
-    #         steps_per_epoch=(nbSample * 0.8) // batchSize,
-    #         epochs=10,
-    #         validation_data=validationGenerator,
-    #         validation_steps=(nbSample * 0.2) // batchSize
-    # )
-
     model.fit(
             trainGenerator,
             epochs=30,

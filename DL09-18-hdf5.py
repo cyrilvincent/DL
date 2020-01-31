@@ -33,5 +33,5 @@ model.save("data/h5/cancer-mlp.h5")
 model.save_weights("data/h5/cancer-mlp-weights.h5")
 
 model.load_weights("data/h5/cancer-mlp-weights.h5") #Work only with the same model
-model = keras.models.load_model("data/h5/cancer-mlp.h5") #No need to have de model structure
+model = keras.models.load_model("data/h5/cancer-mlp.h5") #No need to have the model structure
 
