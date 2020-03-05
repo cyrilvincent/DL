@@ -17,7 +17,7 @@ model = keras.models.Model(inputs=model.input, outputs=x)
 
 model.summary()
 
-keras.utils.plot_model(model, to_file='data/h5/model.png', show_shapes=True, show_layer_names=True)
+#keras.utils.plot_model(model, to_file='data/h5/model.png', show_shapes=True, show_layer_names=True)
 
 model.compile(loss='binary_crossentropy',
               optimizer="rmsprop",
@@ -28,14 +28,14 @@ trainset = keras.preprocessing.image.ImageDataGenerator(rescale=1. / 255, valida
 batchSize = 16
 
 trainGenerator = trainset.flow_from_directory(
-        'data/dogsvscats/large',
+        'data/dogsvscats/train',
         target_size=(224, 224),
         subset = 'training',
         class_mode="binary",
         batch_size=batchSize)
 
 validationGenerator = trainset.flow_from_directory(
-        'data/dogsvscats/large',
+        'data/dogsvscats/validation',
         target_size=(224, 224),
         class_mode="binary",
         subset = 'validation',
