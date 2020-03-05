@@ -3,7 +3,7 @@ import tensorflow as tf
 tf.random.set_seed(1)
 
 X=np.array([[0,0],[0,1],[1,0],[1,1]])
-y=np.array([-1,-1,-1,1]) # 0 center
+y=np.array([0,0,0,1]) # 0 center
 
 import tensorflow.keras as keras
 model = keras.Sequential([
@@ -19,5 +19,5 @@ history = model.fit(X, y, epochs=100, batch_size=1)
 
 res = model.predict(X)
 print(res)
-print(res > 0)
+print(res > 0.5)
 
