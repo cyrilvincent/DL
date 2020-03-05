@@ -1,4 +1,6 @@
 import ctypes
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 import imp
 import sys
 from ctypes.util import find_library
@@ -44,8 +46,7 @@ install it using the command `pip install tensorflow`.""")
         candidate_explanation = True
         print("""
 - Could not load 'msvcp140.dll'. You may install this DLL by downloading Microsoft Visual
-  C++ 2015 Redistributable Update 3 from this URL:
-  https://www.microsoft.com/en-us/download/details.aspx?id=53587""")
+  C++ 2019 Redistributable x64""")
 
     try:
         cudart64_101 = ctypes.WinDLL("cudart64_101.dll")
@@ -80,20 +81,20 @@ install it using the command `pip install tensorflow`.""")
     except OSError:
         candidate_explanation = True
         print("""
-- Could not load 'cudnn64_7.dll'. The GPU version of TensorFlow
+- Could not load 'cudnn64_x.dll'. The GPU version of TensorFlow
   requires that this DLL be installed in a directory that is named in
   your %PATH% environment variable. Note that installing cuDNN is a
   separate step from installing CUDA, and it is often found in a
   different directory from the CUDA DLLs. You may install the
-  necessary DLL by downloading cuDNN 7.0 for Cuda 9.0 from this URL:
+  necessary DLL by downloading cuDNN 7.0 for Cuda 10.1 from this URL:
   https://developer.nvidia.com/cudnn""")
 
     if not candidate_explanation:
         print("""
-- All required DLLs appear to be present. Please open an issue on the
-  TensorFlow GitHub page: https://github.com/tensorflow/tensorflow/issues""")
+- All required DLLs appear to be present.""")
 
-    sys.exit(-1)
+    else:
+        sys.exit(-1)
 
 
 if __name__ == '__main__':
