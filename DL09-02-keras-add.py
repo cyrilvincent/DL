@@ -2,9 +2,6 @@ import numpy as np
 import tensorflow as tf
 tf.random.set_seed(1)
 
-import os
-os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
-
 X = []
 y = []
 for i in range(8):
