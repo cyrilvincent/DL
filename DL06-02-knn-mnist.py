@@ -8,6 +8,9 @@ sample = np.random.randint(60000, size=4000)
 x_train = x_train[sample]
 y_train = y_train[sample]
 
+x_train = x_train.reshape((-1, 28*28))
+x_test = x_test.reshape((-1, 28*28))
+
 import sklearn.neighbors as nn
 model = nn.KNeighborsClassifier(n_neighbors=3)
 model.fit(x_train, y_train)

@@ -9,7 +9,7 @@ model.add(keras.layers.Activation("relu"))
 model.add(keras.layers.Dense(1))
 
 model.compile(optimizer='rmsprop',
-              loss='cmse',
+              loss='mse',
               metrics=['accuracy'])
 
 model.summary()

@@ -10,6 +10,6 @@ def plotFn(inputFn, plotrange, step):
 sigmoidfn = lambda x : 1 / (1 + math.e ** -x)
 xsinfn = lambda x : x * math.sin(x)
 
-plotFn(xsinfn, range(0,1000), 0.01)
-
 print(type(xsinfn))
+
+plotFn(math.tanh, range(-1000,1000), 0.01)
