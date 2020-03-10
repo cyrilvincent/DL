@@ -19,8 +19,7 @@ print(y)
 
 import tensorflow.keras as keras
 model = keras.Sequential([
-    keras.layers.Dense(64, input_shape=(X.shape[1],)),
-    keras.layers.Dense(32),
+    keras.layers.Dense(16, input_shape=(X.shape[1],)),
     keras.layers.Dense(16),
     keras.layers.Dense(1)
   ])
@@ -28,7 +27,7 @@ model = keras.Sequential([
 model.compile(loss="mse")
 model.summary()
 
-history = model.fit(X, y, epochs=100, batch_size=1)
+history = model.fit(X, y, epochs=10, batch_size=1)
 
 res = model.predict(X)
 print(res)

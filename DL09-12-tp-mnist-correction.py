@@ -34,7 +34,7 @@ model = keras.Sequential([
     keras.layers.Dense(500, activation=tf.nn.relu),
     keras.layers.Dense(500, activation=tf.nn.relu),
     keras.layers.Dense(500, activation=tf.nn.relu),
-    keras.layers.Dense(10, activation=tf.nn.softmax),
+    keras.layers.Dense(10, activation=tf.nn.relu),
   ])
 
 model.compile(loss="categorical_crossentropy", optimizer='adam', metrics=['accuracy'])
