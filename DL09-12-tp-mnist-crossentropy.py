@@ -29,12 +29,12 @@ target = y_train[sample]
 
 
 model = keras.Sequential([
-    keras.layers.Dense(500, activation=tf.nn.relu, input_shape=(x_train.shape[1],)),
-    keras.layers.Dense(500, activation=tf.nn.relu),
-    keras.layers.Dense(500, activation=tf.nn.relu),
-    keras.layers.Dense(500, activation=tf.nn.relu),
-    keras.layers.Dense(500, activation=tf.nn.relu),
-    keras.layers.Dense(10, activation=tf.nn.relu),
+    keras.layers.Dense(500, input_shape=(x_train.shape[1],)),
+    keras.layers.Dense(500),
+    keras.layers.Dense(500),
+    keras.layers.Dense(500),
+    keras.layers.Dense(500),
+    keras.layers.Dense(10),
   ])
 
 model.compile(loss="categorical_crossentropy", optimizer='adam', metrics=['accuracy'])
