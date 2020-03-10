@@ -16,8 +16,11 @@ import tensorflow.keras as keras
 model = keras.Sequential([
     keras.layers.Dense(30, activation=tf.nn.relu,
                        input_shape=(X.shape[1],)),
+    keras.layers.Dropout(0.5),
     keras.layers.Dense(30, activation=tf.nn.relu),
+    keras.layers.Dropout(0.5),
     keras.layers.Dense(30, activation=tf.nn.relu),
+    keras.layers.Dropout(0.5),
     keras.layers.Dense(1, activation=tf.nn.sigmoid)
   ])
 
@@ -26,6 +29,5 @@ model.compile(loss="binary_crossentropy", optimizer=sgd,metrics=['accuracy'])
 model.summary()
 
 history = model.fit(X, y, epochs=200, batch_size=10, validation_split=0.2)
-eval = model.evaluate(X, y)
-print(eval)
+model.save("data/h5/cancer.h5")
 
