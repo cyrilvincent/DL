@@ -1,11 +1,11 @@
 import tensorflow.keras as keras
 
 model1 = keras.applications.vgg16.VGG16(include_top=False, weights="imagenet", input_shape=(224, 224, 3))
+model1f = keras.layers.Flatten()(model1.output)
 model2 = keras.applications.resnet_v2.ResNet152V2(include_top=False, weights="imagenet", input_shape=(224, 224, 3))
-model = keras.layers.Concatenate([model1, model2], axis=1)
+model2f = keras.layers.Flatten()(model2.output)
 
-x = model.output
-x = keras.layers.Flatten()(x)
+x = keras.layers.concatenate([model1f, model2f])
 x = keras.layers.Dense(30, activation="relu")(x)
 x = keras.layers.Dense(30, activation="relu")(x)
 x =  keras.layers.Dense(30, activation="relu")(x)

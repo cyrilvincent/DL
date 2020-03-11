@@ -3,7 +3,7 @@ import tensorflow.keras as keras
 
 model = keras.applications.vgg16.VGG16(include_top=False, weights="imagenet", input_shape=(224, 224, 3))
 
-for layer in model.layers[:25]:
+for layer in model.layers[:19]:
     layer.trainable = False
 
 x = model.output

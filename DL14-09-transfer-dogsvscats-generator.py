@@ -3,7 +3,9 @@ import tensorflow.keras as keras
 
 model = keras.applications.vgg16.VGG16(include_top=False, weights="imagenet", input_shape=(224, 224, 3))
 
-for layer in model.layers[:25]:
+print(len(model.layers))
+
+for layer in model.layers[:19]:
     layer.trainable = False
 
 x = model.output
@@ -16,8 +18,6 @@ x = keras.layers.Dense(1, activation="sigmoid")(x)
 model = keras.models.Model(inputs=model.input, outputs=x)
 
 model.summary()
-
-#keras.utils.plot_model(model, to_file='data/h5/model.png', show_shapes=True, show_layer_names=True)
 
 model.compile(loss='binary_crossentropy',
               optimizer="rmsprop",

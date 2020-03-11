@@ -30,9 +30,6 @@ from tensorflow.compat.v1.keras.layers import BatchNormalization
 from tensorflow.compat.v1.keras.regularizers import l2
 from tensorflow.compat.v1.keras.models import Model
 """
-
-os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
-
 detector = ObjectDetection()
 detector.setModelTypeAsYOLOv3()
 detector.setModelPath("yolo.h5")
