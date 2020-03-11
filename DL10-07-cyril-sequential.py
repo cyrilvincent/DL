@@ -45,7 +45,6 @@ def train():
               optimizer=keras.optimizers.RMSprop(lr=0.0001),
               metrics=['accuracy'])
     model.summary()
-    keras.utils.plot_model(model, to_file='data/h5/model.png', show_shapes=True, show_layer_names=True)
 
     trainset = keras.preprocessing.image.ImageDataGenerator(rescale=1. / 255, validation_split=0.2,
         shear_range=0.2,
