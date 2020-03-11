@@ -1,10 +1,15 @@
-import tensorflow.keras as keras
+import numpy as np
 
-(x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data()
+with np.load("data/mnist/mnist.npz", allow_pickle=True) as f:
+    x_train, y_train = f['x_train'], f['y_train']
+    x_test, y_test = f['x_test'], f['y_test']
 
-x_train = x_train.reshape(-1, 28 * 28)
-x_test = x_test.reshape(-1, 28 * 28)
+x_train = x_train.astype("float32")
+x_test = x_test.astype("float32")
 
+# Reshape the dataset into 4D array
+x_train = x_train.reshape(-1,28*28)
+x_test = x_test.reshape(-1,28*28)
 
 import sklearn.ensemble as rf
 model = rf.RandomForestClassifier(n_estimators=100)
