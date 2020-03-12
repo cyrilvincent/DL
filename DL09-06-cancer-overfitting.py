@@ -19,8 +19,6 @@ model.summary()
 hist = model.fit(X, y, epochs=200, batch_size=10)
 eval = model.evaluate(X, y)
 print(eval)
-preds = model.predict(X)
-print(X - preds)
 
 import matplotlib.pyplot as plt
 f, ax = plt.subplots()

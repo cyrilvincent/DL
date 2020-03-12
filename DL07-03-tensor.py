@@ -6,7 +6,6 @@ c = a+b
 print(c)
 print(c.numpy())
 
-
 v1 = tf.constant([1,2])
 v2 = tf.constant([3,4])
 print(v1.shape)

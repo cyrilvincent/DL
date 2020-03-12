@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv("data/dogsvscats/vgg16-bottleneck-train.small.csv")
+df = pd.read_csv("data/dogsvscats/vgg16-bottleneck-train.large.csv")
 print(df.head())
 x = df.iloc[:,2:]
 y = df.iloc[:,1]

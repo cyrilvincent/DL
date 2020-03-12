@@ -1,1 +1,0 @@
-#Only with caegories c0 and c1
