@@ -44,14 +44,11 @@ model.add(keras.layers.Activation('softmax'))
 #pip install tensorflow-model-optimization
 import tensorflow_model_optimization as tfmot
 
-model = tfmot.quantization.keras.quantize_model(model) # Change the model with new layer ready for quantization
-# Must be loaded in tflite with tf.lite.Optimize.DEFAULT
-
 pruning_schedule = tfmot.sparsity.keras.PolynomialDecay(
                         initial_sparsity=0.0, final_sparsity=0.5,
                         begin_step=2000, end_step=4000)
 
-# Equivalent d'un drop out permanent
+# Equivalent d'un drop connect permanent
 # Enlève les poids proche de 0 avec une fonction de décroissance polynomiale
 model = tfmot.sparsity.keras.prune_low_magnitude(model, pruning_schedule=pruning_schedule)
 
