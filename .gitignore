@@ -1,8 +1,12 @@
 *.zip
 *.rar
 *.large.*
-large
+*large*
+large/**
 *ckpt*.*
 cows/*
 logs/**
 .ipynb**/**
+/data/dogsvscats/large/
+vgg16model*.h5
+/data/state-farm-distracted-driver-detection/train-2cat-224/
