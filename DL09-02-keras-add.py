@@ -19,8 +19,7 @@ print(y)
 
 import tensorflow.keras as keras
 model = keras.Sequential([
-    keras.layers.Dense(16, input_shape=(X.shape[1],)),
-    keras.layers.Dense(16),
+    keras.layers.Dense(8, input_shape=(X.shape[1],)),
     keras.layers.Dense(1)
   ])
 
