@@ -9,7 +9,8 @@ print(y)
 import tensorflow.keras as keras
 model = keras.Sequential([
     keras.layers.Dense(30, input_shape=(X.shape[1],)),
-    keras.layers.Dense(15),
+    keras.layers.Dense(30),
+    keras.layers.Dense(30),
     keras.layers.Dense(1)
   ])
 
@@ -19,10 +20,15 @@ model.summary()
 history = model.fit(X, y, epochs=200)
 
 predicted = model.predict(X)
+print(model.evaluate(X,y))
 
 import numpy as np
 predicted = np.where(predicted > 0.5,1,0)
-# print(predicted)
-# print(list(predicted.reshape(-1) - y))
+predicted = predicted.reshape(-1)
+
+print(predicted)
+errors = predicted - y
+print(errors)
+print(len(errors[errors == 0]) / len(y))
 
 
