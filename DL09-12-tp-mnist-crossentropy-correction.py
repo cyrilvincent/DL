@@ -32,17 +32,18 @@ model = keras.Sequential([
     keras.layers.Dense(10, activation=tf.nn.sigmoid),
   ])
 
-model.compile(loss="binary_crossentropy", metrics=['accuracy'])
-trained = model.fit(x_train, y_train, epochs=100, batch_size=10,validation_data=(x_test, y_test))
+model.compile(loss="categorical_crossentropy", metrics=['accuracy'])
+trained = model.fit(x_train, y_train, epochs=5, batch_size=10,validation_data=(x_test, y_test))
 print(model.summary())
 
 predicted = model.predict(x_test)
 import matplotlib.pyplot as plt
 # Gestion des erreurs
 # on récupère les données mal prédites
-misclass = (y_test != predicted.reshape(-1))
-images = x_test.reshape((-1, 28, 28))
-misclass_images = images[misclass,:,:]
+predicted = predicted.argmax(axis=1)
+misclass = (y_test.argmax(axis=1) != predicted)
+x_test = x_test.reshape((-1, 28, 28))
+misclass_images = x_test[misclass,:,:]
 misclass_predicted = predicted[misclass]
 
 # on sélectionne un échantillon de ces images

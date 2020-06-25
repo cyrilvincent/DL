@@ -1,10 +1,10 @@
 import numpy as np
 
-softmax = lambda x : np.exp(x)/sum(np.exp(x))
 linsm = lambda x : x/sum(x)
 geosm = lambda x : x**2/sum(x**2)
+softmax = lambda x : np.exp(x)/sum(np.exp(x))
 
-scores = np.array([0.2, 0.4, 0.8, 0.95, 0.99])
+scores = np.array([0.2, 0.4, 0.8, 0.95, 2])
 print("Scores", np.round(scores * 100).astype(int))
 print(sum(scores))
 probas = linsm(scores)
