@@ -17,7 +17,7 @@ x_test /= 255
 x_train = x_train.reshape(-1,28*28)
 x_test = x_test.reshape(-1,28*28)
 
-y_train = keras.utils.to_categorical(y_train)
+y_train = keras.utils.to_categorical(y_train) #[0,1,2,3,4,5,6,7,8,9]
 y_test = keras.utils.to_categorical(y_test)
 
 sample = np.random.randint(60000, size=5000)
@@ -25,6 +25,9 @@ x_train = x_train[sample]
 y_train = y_train[sample]
 
 model = None #TODO
+# 10 outputs + sigmoide dernier layer + categorical_crossentropy
+# input 2 => [0,0,1,0,0,0,0,0,0,0]
+# output = [0,0,1,0,0,0,0,0,0,0]
 
 predicted = model.predict(x_test)
 import matplotlib.pyplot as plt
