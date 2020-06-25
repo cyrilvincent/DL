@@ -1,6 +1,7 @@
 import sklearn.datasets
 import sklearn.preprocessing
-
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 cancer = sklearn.datasets.load_breast_cancer() # more info : https://goo.gl/U2Uwz2
 X=cancer['data']
 y=cancer['target']
@@ -14,12 +15,13 @@ X = scaler.transform(X)
 import tensorflow as tf
 import tensorflow.keras as keras
 
-model = keras.models.load_model("data/h5/cancer.h5")
+model = keras.models.load_model("data/h5/cancer-mlp.h5")
 
 print(model.evaluate(X, y))
 predicted = model.predict(X)
 
-predicted = predicted.reshape(-1)
+import numpy as np
+predicted = np.argmax(predicted, axis=1)
 print(predicted)
 errors = predicted - y
 print(errors)
