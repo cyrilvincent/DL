@@ -26,14 +26,14 @@ y_train = y_train[sample]
 
 model = keras.Sequential([
     keras.layers.Dense(600, input_shape=(x_train.shape[1],)),
-    keras.layers.Dense(400),
-    keras.layers.Dense(200),
-    keras.layers.Dense(100),
-    keras.layers.Dense(10, activation=tf.nn.sigmoid),
+    keras.layers.Dense(400, activation="relu"),
+    keras.layers.Dense(200, activation="relu"),
+    keras.layers.Dense(100, activation="relu"),
+    keras.layers.Dense(10, activation=tf.nn.softmax),
   ])
 
 model.compile(loss="categorical_crossentropy", metrics=['accuracy'])
-trained = model.fit(x_train, y_train, epochs=5, batch_size=10,validation_data=(x_test, y_test))
+trained = model.fit(x_train, y_train, epochs=10, batch_size=10,validation_data=(x_test, y_test))
 print(model.summary())
 
 predicted = model.predict(x_test)
