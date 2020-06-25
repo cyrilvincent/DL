@@ -1,8 +1,8 @@
 import numpy as np
 
 with np.load("data/mnist/mnist.npz", allow_pickle=True) as f:
-    x_train, y_train = f['x_train'], f['y_train']
-    x_test, y_test = f['x_test'], f['y_test']
+    x_train, y_train = f['x_train'], f['y_train'] #shape(60000,28,28)
+    x_test, y_test = f['x_test'], f['y_test'] #shape(60000,1)
 
 select = np.random.randint(x_train.shape[0], size=12)
 

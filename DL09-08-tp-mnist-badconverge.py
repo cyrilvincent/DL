@@ -5,7 +5,7 @@ import numpy as np
 
 #D'après DL03-02-npz-mnist.py
 with np.load("data/mnist/mnist.npz", allow_pickle=True) as f:
-    x_train, y_train = f['x_train'], f['y_train']
+    x_train, y_train = f['x_train'], f['y_train'] #(60000,28,28) => (60000,784)
     x_test, y_test = f['x_test'], f['y_test']
 
 x_train = x_train.astype("float32")
@@ -14,20 +14,33 @@ x_test = x_test.astype("float32")
 x_train /= 255
 x_test /= 255
 
-x_train = x_train.reshape(-1,28*28)
+x_train = x_train.reshape(-1,28*28) # 28*28 = 784
 x_test = x_test.reshape(-1,28*28)
 
 sample = np.random.randint(60000, size=5000)
 x_train = x_train[sample]
 y_train = y_train[sample]
 
+#Topologie
+#MLP
+#TrainSet : x = (48000,28,28), y = (48000,1)
+#ValidationSet = 12000
+#TestSet : 10000
+#HiddenLayer : 48000=10e4 => 4
+#Input : 28*28=784
+#4 Hidden Layer
+#Output : 1
+#Topologie en V en =
+#epochs=? batch_size=1 et 10
+#Comparer accuracy et val_accuracy
+#20%
+
+
 model = None #TODO
 
-predicted = None #TODO résulat de la prédiction
+predicted = None #TODO résulat de la prédiction sur le jeu de test
 
 import matplotlib.pyplot as plt
-# Gestion des erreurs
-# on récupère les données mal prédites
 misclass = (y_test != predicted.reshape(-1))
 images = x_test.reshape((-1, 28, 28))
 misclass_images = images[misclass,:,:]
