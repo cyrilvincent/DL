@@ -25,7 +25,7 @@ model = keras.Sequential([
   ])
 
 sgd = keras.optimizers.SGD(nesterov=True, lr=1e-4)
-model.compile(loss="binary_crossentropy", optimizer=sgd,metrics=['accuracy'])
+model.compile(loss="binary_crossentropy",metrics=['accuracy'])
 model.summary()
 
 history = model.fit(X, y, epochs=200, batch_size=10, validation_split=0.2)
