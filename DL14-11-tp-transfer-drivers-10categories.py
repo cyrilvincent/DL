@@ -14,7 +14,7 @@ x = keras.layers.Dense(128, activation="relu")(x)
 x = keras.layers.Dropout(0.2)(x)
 x =  keras.layers.Dense(30, activation="relu")(x)
 x = keras.layers.Dropout(0.2)(x)
-x = keras.layers.Dense(1, activation="sigmoid")(x)
+x = keras.layers.Dense(10, activation="softmax")(x)
 
 model = keras.models.Model(inputs=model.input, outputs=x)
 
@@ -34,13 +34,13 @@ trainGenerator = trainset.flow_from_directory(
         'data/state-farm-distracted-driver-detection/train-2cat-224',
         target_size=(224, 224),
         subset = 'training',
-        class_mode="binary",
+        class_mode="categorical",
         batch_size=batchSize)
 
 validationGenerator = trainset.flow_from_directory(
         'data/state-farm-distracted-driver-detection/train-2cat-224',
         target_size=(224, 224),
-        class_mode="binary",
+        class_mode="categorical",
         subset = 'validation',
         batch_size=batchSize)
 

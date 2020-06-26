@@ -15,9 +15,6 @@ nb_validation_samples = 800
 epochs = 50
 batch_size = 16
 
-#model = applications.vgg16.VGG16(weights='imagenet', include_top=False, input_shape = (img_width,img_height,3))
-
-
 model = applications.vgg16.VGG16(include_top=False, weights="imagenet", input_shape = (img_width,img_height,3))
 print(model.summary())
 
@@ -25,7 +22,7 @@ for layer in model.layers[:25]:
     layer.trainable = False
 
 model = Flatten()(model.output)
-csvmodel = Input(shape=(2,))
+csvmodel = Input(shape=(30,))
 model = Concatenate([model, csvmodel], axis=1)
 model = Dense(256, activation='relu')(model)
 model = Dropout(0.5)(model)
@@ -34,5 +31,5 @@ model = Dense(1, activation='sigmoid')
 model.build()
 print(model.summary())
 
-for layer in model.layers[:25]:
+for layer in model.layers[:19]:
     layer.trainable = False
