@@ -35,13 +35,13 @@ def CNNCyril():
         model.add(keras.layers.Dense(256))
         model.add(keras.layers.Activation('relu'))
         model.add(keras.layers.Dropout(0.5))
-        model.add(keras.layers.Dense(1))
-        model.add(keras.layers.Activation('sigmoid'))
+        model.add(keras.layers.Dense(10))
+        model.add(keras.layers.Activation('softmax'))
         return model
 
 def train():
     model = CNNCyril()
-    model.compile(loss='binary_crossentropy',
+    model.compile(loss='categorical_crossentropy',
               metrics=['accuracy'])
     model.summary()
 
@@ -51,16 +51,16 @@ def train():
     batchSize = 16
 
     trainGenerator = trainset.flow_from_directory(
-            'data/state-farm-distracted-driver-detection/train-2cat-224',
+            'data/state-farm-distracted-driver-detection/train-224',
             target_size=(224, 224),
             subset = 'training',
-            class_mode="binary",
+            class_mode="categorical",
             batch_size=batchSize)
 
     validationGenerator = trainset.flow_from_directory(
-            'data/state-farm-distracted-driver-detection/train-2cat-224',
+            'data/state-farm-distracted-driver-detection/train-224',
             target_size=(224, 224),
-            class_mode="binary",
+            class_mode="categorical",
             subset = 'validation',
             batch_size=batchSize)
 

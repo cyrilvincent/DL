@@ -17,11 +17,10 @@ model.add(keras.layers.Dropout(0.5))
 model.add(keras.layers.Dense(256))
 model.add(keras.layers.Activation('relu'))
 model.add(keras.layers.Dropout(0.5))
-model.add(keras.layers.Dense(1))
-model.add(keras.layers.Activation('sigmoid'))
+model.add(keras.layers.Dense(10))
+model.add(keras.layers.Activation('softmax'))
 
-model.compile(loss='binary_crossentropy',
-              optimizer=keras.optimizers.RMSprop(lr=0.0001),
+model.compile(loss='categorical_crossentropy',
               metrics=['accuracy'])
 model.summary()
 

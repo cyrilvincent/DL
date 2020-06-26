@@ -5,61 +5,23 @@ import tensorflow.keras as keras
 
 def CNNCyril():
         model = keras.models.Sequential()
-        model.add(keras.layers.Conv2D(32, (3, 3), input_shape=(224, 224, 3), padding="same"))
-        model.add(keras.layers.Activation('relu'))
-        model.add(keras.layers.MaxPooling2D(pool_size=(2, 2)))
-        # 112, 112, 32
-
-        model.add(keras.layers.Conv2D(64, (3, 3)))
-        model.add(keras.layers.Activation('relu'))
-        model.add(keras.layers.MaxPooling2D(pool_size=(2, 2)))
-        # 56, 56, 64
-
-        model.add(keras.layers.Conv2D(128, (3, 3)))
-        model.add(keras.layers.Activation('relu'))
-        model.add(keras.layers.MaxPooling2D(pool_size=(2, 2)))
-        # 28, 28, 128
-
-        model.add(keras.layers.Conv2D(128, (3, 3)))
-        model.add(keras.layers.Activation('relu'))
-        model.add(keras.layers.MaxPooling2D(pool_size=(2, 2)))
-        # 14, 14, 128
-
-        #Dense
-        model.add(keras.layers.Flatten())
-        # 25088
-        model.add(keras.layers.Dropout(0.5))
-        model.add(keras.layers.Dense(512))
-        model.add(keras.layers.Activation('relu'))
-        model.add(keras.layers.Dropout(0.5))
-        model.add(keras.layers.Dense(256))
-        model.add(keras.layers.Activation('relu'))
-        model.add(keras.layers.Dropout(0.5))
-        model.add(keras.layers.Dense(1))
-        model.add(keras.layers.Activation('sigmoid'))
+        #TODO
         return model
 
 def train():
     model = CNNCyril()
-    model.compile(loss='binary_crossentropy',
-              optimizer=keras.optimizers.RMSprop(lr=0.0001),
-              metrics=['accuracy'])
-    model.summary()
+    #TODO Compile
 
     trainset = keras.preprocessing.image.ImageDataGenerator(rescale=1. / 255, validation_split=0.2,
         )
 
     batchSize = 16
 
-    trainGenerator = None
+    trainGenerator = None #TODO
 
-    validationGenerator = None
+    validationGenerator = None #TODO
 
-    model.fit(
-            trainGenerator,
-            epochs=30,
-            validation_data=validationGenerator,
-    )
+    #TODO fit
 
     model.save('data/state-farm-distracted-driver-detection/cyrilmodel.h5')
 
