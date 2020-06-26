@@ -20,7 +20,8 @@ def predicts(path):
     print(f"Scan {path}/dogs")
     files = os.listdir(f"{path}/dogs")
     for f in files :
-        res = predict(f"{path}/dogs/{f}")[0][0]
+        res = predict(f"{path}/dogs/{f}")
+        res = res[0][0]
         if res > 0.5 :
             tp += 1
             qs.append((res - 0.5) * 2)
@@ -39,10 +40,6 @@ def predicts(path):
             fn += 1
         print(f"Accuracy: {(tp + tn) / (tp + tn + fp + fn):.2f}")
     return tp,tn,fp,fn,qs
-
-
-
-
 
 if __name__ == '__main__':
     tp,tn,fp,fn,qs = predicts("data/dogsvscats/small/train")

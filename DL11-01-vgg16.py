@@ -9,7 +9,7 @@ from tensorflow.keras.applications.vgg16 import VGG16
 model = VGG16()
 
 # load an image from file
-image = load_img('data/img/ski.jpg', target_size=(224, 224))
+image = load_img('data/img/mug.jpg', target_size=(224, 224))
 # convert the image pixels to a numpy array
 image = img_to_array(image)
 # reshape data for the model : (nbsample, length, width, colordepth)
@@ -17,9 +17,10 @@ image = image.reshape((1, image.shape[0], image.shape[1], image.shape[2]))
 # prepare the image for the VGG model
 image = preprocess_input(image)
 # predict the probability across all output classes
-yhat = model.predict(image)
+predicted = model.predict(image)
+
 # convert the probabilities to class labels
-label = decode_predictions(yhat)
+label = decode_predictions(predicted)
 # retrieve the most likely result, e.g. highest probability
 label = label[0][0]
 # print the classification

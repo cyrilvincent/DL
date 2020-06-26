@@ -66,7 +66,7 @@ def train():
 
     model.fit(
             trainGenerator,
-            epochs=1,
+            epochs=10,
             validation_data=validationGenerator,
     )
 
