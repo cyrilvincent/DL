@@ -27,6 +27,9 @@ print(predicted - y_test)
 print(cancer.feature_names)
 features_importances = model.feature_importances_
 print(features_importances)
+zip = list(zip(cancer.feature_names, features_importances))
+zip = zip[features_importances.argsort()]
+print(zip)
 
 import matplotlib.pyplot as plt
 plt.bar(range(len(features_importances)),features_importances)

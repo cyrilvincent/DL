@@ -12,7 +12,7 @@ x_train = x_train.reshape(-1,28*28)
 x_test = x_test.reshape(-1,28*28)
 
 import sklearn.ensemble as rf
-model = rf.RandomForestClassifier(n_estimators=100,verbose=True)
+model = rf.RandomForestClassifier(n_estimators=100)
 model.fit(x_train, y_train)
 score = model.score(x_test, y_test)
 print('Score: %f' % score)
