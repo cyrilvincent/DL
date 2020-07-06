@@ -24,9 +24,9 @@ y_train = y_train[sample]
 
 model = keras.Sequential([
     keras.layers.Dense(600, input_shape=(x_train.shape[1],)),
-    keras.layers.Dense(400),
-    keras.layers.Dense(200),
-    keras.layers.Dense(100),
+    keras.layers.Dense(400, activation="relu"),
+    keras.layers.Dense(200, activation="relu"),
+    keras.layers.Dense(100, activation="relu"),
     keras.layers.Dense(1),
   ])
 

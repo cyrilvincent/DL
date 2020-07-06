@@ -18,7 +18,7 @@ model = keras.Sequential([
                        input_shape=(X.shape[1],)),
     keras.layers.Dense(30, activation=tf.nn.relu),
     keras.layers.Dense(30, activation=tf.nn.relu),
-    keras.layers.Dense(1, activation=tf.nn.sigmoid)
+    keras.layers.Dense(2, activation=tf.nn.softmax)
   ])
 
 sgd = keras.optimizers.SGD(nesterov=True, lr=1e-4)

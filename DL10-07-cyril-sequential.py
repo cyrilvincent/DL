@@ -42,7 +42,6 @@ def CNNCyril():
 def train():
     model = CNNCyril()
     model.compile(loss='binary_crossentropy',
-              optimizer=keras.optimizers.RMSprop(lr=0.0001),
               metrics=['accuracy'])
     model.summary()
 

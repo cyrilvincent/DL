@@ -37,7 +37,7 @@ model = keras.Sequential([
   ])
 sgd = keras.optimizers.SGD(nesterov=True, lr=1e-4)
 model.compile(loss="categorical_crossentropy", optimizer=sgd, metrics=['accuracy'])
-trained = model.fit(x_train, y_train, epochs=100, batch_size=10,validation_data=(x_test, y_test))
+trained = model.fit(x_train, y_train, epochs=50, batch_size=10,validation_data=(x_test, y_test))
 print(model.evaluate(x_test, y_test))
 #nbIteration = len(dataset) * epochs  / batch_size
 #epochs = nbiteration * batch_size / len(dataset)
