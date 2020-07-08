@@ -18,7 +18,6 @@ model.add(keras.layers.Dense(1))
 model.add(keras.layers.Activation('sigmoid'))
 
 model.compile(loss='binary_crossentropy',
-              optimizer=keras.optimizers.RMSprop(lr=0.0001),
               metrics=['accuracy'])
 model.summary()
 

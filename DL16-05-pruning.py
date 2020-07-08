@@ -45,7 +45,7 @@ model.add(keras.layers.Activation('softmax'))
 import tensorflow_model_optimization as tfmot
 
 pruning_schedule = tfmot.sparsity.keras.PolynomialDecay(
-                        initial_sparsity=0.0, final_sparsity=0.5,
+                        initial_sparsity=0.0, final_sparsity=0.1,
                         begin_step=2000, end_step=4000)
 
 model = tfmot.sparsity.keras.prune_low_magnitude(model, pruning_schedule=pruning_schedule)

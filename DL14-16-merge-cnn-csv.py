@@ -18,7 +18,7 @@ batch_size = 16
 model = applications.vgg16.VGG16(include_top=False, weights="imagenet", input_shape = (img_width,img_height,3))
 print(model.summary())
 
-for layer in model.layers[:25]:
+for layer in model.layers[:19]:
     layer.trainable = False
 
 model = Flatten()(model.output)

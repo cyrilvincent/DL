@@ -19,6 +19,7 @@ for layer in model.layers[:19]:
     layer.trainable = False
 
 model.build()
+model.optimizer = keras.optimizers.SGD(nesterov=True, lr=1e-5)
 print(model.summary())
 
 

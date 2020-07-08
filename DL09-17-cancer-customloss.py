@@ -32,7 +32,7 @@ class MinFalseNegativeError(tf.losses.Loss):
   def call(self, y_true, y_pred):
       y_pred = ops.convert_to_tensor(y_pred)
       y_true = math_ops.cast(y_true, y_pred.dtype)
-      res = math_ops.abs((y_pred * y_true) * 5 + y_pred - y_true)
+      res = math_ops.abs(((1 - y_pred )* y_true) * 5 + y_pred - y_true)
       return K.mean(res, axis=-1)
 
 model = keras.Sequential([

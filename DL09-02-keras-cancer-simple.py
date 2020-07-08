@@ -8,9 +8,9 @@ print(y)
 
 import tensorflow.keras as keras
 model = keras.Sequential([
-    keras.layers.Dense(30, input_shape=(X.shape[1],)),
-    keras.layers.Dense(30),
-    keras.layers.Dense(30),
+    keras.layers.Dense(25, input_shape=(X.shape[1],)),
+    keras.layers.Dense(20),
+    keras.layers.Dense(10),
     keras.layers.Dense(1)
   ])
 

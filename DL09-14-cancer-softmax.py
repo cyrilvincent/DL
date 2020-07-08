@@ -14,7 +14,7 @@ X = scaler.transform(X)
 import tensorflow as tf
 import tensorflow.keras as keras
 
-y = keras.utils.to_categorical(y, 2)
+y = keras.utils.to_categorical(y)
 
 model = keras.Sequential([
     keras.layers.Dense(30, activation=tf.nn.relu,
@@ -31,4 +31,6 @@ model.summary()
 history = model.fit(X, y, epochs=200, batch_size=10, validation_split=0.2)
 eval = model.evaluate(X, y)
 print(eval)
+# Input [0,1,0,1]
+# Output [0.25,0.75]
 

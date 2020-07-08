@@ -21,7 +21,7 @@ model = keras.Sequential([
     keras.layers.Dense(1, activation=tf.nn.sigmoid)
   ])
 
-sgd = keras.optimizers.SGD(nesterov=True, lr=1e-4)
+sgd = keras.optimizers.SGD(nesterov=True, lr=1e-5)
 model.compile(loss="binary_crossentropy", optimizer=sgd,metrics=['accuracy'])
 model.summary()
 
