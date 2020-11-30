@@ -14,3 +14,6 @@ print(np.median(loyerparm2))
 plt.scatter(dataframe.surface,dataframe.loyer)
 plt.show()
 
+#Reprise 15h15
+#xlrd
+
