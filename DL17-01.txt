@@ -1,3 +1,0 @@
-!git clone https://github.com/cyrilvincent/DL sample_data/DL
-!mkdir "/content/drive/My Drive/DL"
-!cp --verbose -r sample_data/DL/* "/content/drive/My Drive/DL"
