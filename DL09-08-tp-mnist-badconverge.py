@@ -17,7 +17,7 @@ x_test /= 255
 x_train = x_train.reshape(-1,28*28) # 28*28 = 784
 x_test = x_test.reshape(-1,28*28)
 
-sample = np.random.randint(60000, size=5000)
+sample = np.random.randint(60000, size=1000)
 x_train = x_train[sample]
 y_train = y_train[sample]
 
@@ -56,4 +56,6 @@ for index, value in enumerate(select):
     plt.title('Predicted: %i' % misclass_predicted[value])
 
 plt.show()
+
+#Reprise 13h45
 

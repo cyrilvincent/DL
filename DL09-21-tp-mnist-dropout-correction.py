@@ -20,7 +20,7 @@ x_test = x_test.reshape(-1,28*28)
 y_train = keras.utils.to_categorical(y_train)
 y_test = keras.utils.to_categorical(y_test)
 
-sample = np.random.randint(60000, size=5000)
+sample = np.random.randint(60000, size=60000)
 x_train = x_train[sample]
 y_train = y_train[sample]
 
@@ -37,11 +37,12 @@ model = keras.Sequential([
   ])
 sgd = keras.optimizers.SGD(nesterov=True, lr=1e-4)
 model.compile(loss="categorical_crossentropy", optimizer=sgd, metrics=['accuracy'])
-trained = model.fit(x_train, y_train, epochs=50, batch_size=10,validation_data=(x_test, y_test))
+trained = model.fit(x_train, y_train, epochs=200, batch_size=10,validation_data=(x_test, y_test))
 print(model.evaluate(x_test, y_test))
-#nbIteration = len(dataset) * epochs  / batch_size
-#epochs = nbiteration * batch_size / len(dataset)
 predicted = model.predict(x_test)
+
+model.save("h5/mnist_mlp_dropout_sgd.h5")
+
 import matplotlib.pyplot as plt
 # Gestion des erreurs
 # on récupère les données mal prédites

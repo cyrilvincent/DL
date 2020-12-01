@@ -1,4 +1,6 @@
 from sklearn.datasets import load_breast_cancer
+import tensorflow.keras as keras
+
 cancer = load_breast_cancer() # more info : https://goo.gl/U2Uwz2
 X=cancer['data']
 y=cancer['target']
@@ -6,7 +8,7 @@ y=cancer['target']
 print(X)
 print(y)
 
-import tensorflow.keras as keras
+
 model = keras.Sequential([
     keras.layers.Dense(25, input_shape=(X.shape[1],)),
     keras.layers.Dense(20),

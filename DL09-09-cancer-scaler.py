@@ -23,6 +23,6 @@ model.compile(loss="mse",metrics=['accuracy'])
 model.summary()
 
 history = model.fit(X, y, epochs=200, batch_size=10, validation_split=0.2)
-eval = model.evaluate(X, y, validation_split=0.2)
+eval = model.evaluate(X, y)
 print(eval)
 
