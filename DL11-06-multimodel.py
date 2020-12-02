@@ -1,6 +1,5 @@
 import tensorflow.keras as keras
 import importlib
-import logging
 import time
 
 class ImageCategorize:
