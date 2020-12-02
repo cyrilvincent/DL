@@ -24,7 +24,7 @@ model.compile(loss='binary_crossentropy',
               metrics=['accuracy'])
 model.summary()
 
-history = model.fit(x, y, epochs=500, batch_size=10, validation_split=0.2)
+history = model.fit(x, y, epochs=50, batch_size=10, validation_split=0.2)
 print(model.evaluate(x,y))
 
 model.save("data/h5/drivers_mlp.h5")
