@@ -39,9 +39,7 @@ def train():
     #keras.utils.plot_model(model, to_file='data/h5/model.png', show_shapes=True, show_layer_names=True)
 
     trainset = keras.preprocessing.image.ImageDataGenerator(rescale=1. / 255, validation_split=0.2,
-        shear_range=0.2,
-        zoom_range=0.2,
-        horizontal_flip=True)
+        )
 
     batchSize = 16
 
@@ -65,14 +63,14 @@ def train():
             validation_data=validationGenerator,
     )
 
-    model.save('data/dogsvscats/cholletmodel.h5')
-    model.save_weights('data/dogsvscats/cholletmodel-weights.h5')
+    #model.save('data/dogsvscats/cholletmodel.h5')
+    #model.save_weights('data/dogsvscats/cholletmodel-weights.h5')
 
     # 25 * 8s 81ms/step - loss: 0.4310 - accuracy: 0.8044 - val_loss: 0.5018 - val_accuracy: 0.7500
 
 if __name__ == '__main__':
 
-    #train()
+    train()
     model = keras.models.load_model("data/dogsvscats/cholletmodel.h5")
     img = keras.preprocessing.image.load_img("data/dogsvscats/small/validation/dogs/dog.1001.jpg", target_size=(150, 150))
     img = keras.preprocessing.image.img_to_array(img)

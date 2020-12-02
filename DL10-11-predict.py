@@ -1,6 +1,7 @@
 import tensorflow.keras as keras
 import os
 
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 # load the model
 model = keras.models.load_model("data/dogsvscats/cyrilmodel.h5")
 
