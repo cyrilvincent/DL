@@ -1,6 +1,6 @@
 import tensorflow.keras as keras
 
-model = keras.applications.vgg16.VGG16(include_top=False, weights="imagenet", input_shape=(224, 224, 3))
+model = keras.applications.mobilenet_v2.MobileNetV2(include_top=False, weights="imagenet", input_shape=(224, 224, 3))
 
 # model =
 

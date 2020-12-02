@@ -44,14 +44,11 @@ validationGenerator = trainset.flow_from_directory(
         subset = 'validation',
         batch_size=batchSize)
 
-checkpointer = keras.callbacks.ModelCheckpoint(filepath = 'data/h5/vgg16-dogsvscatsvscows-{epoch:03d}-{accuracy:.3f}.h5',
-                                                         monitor='accuracy'
-                                                        )
+
 model.fit(
         trainGenerator,
         epochs=30,
         validation_data=validationGenerator,
-        callbacks=[checkpointer]
 )
 
 model.save('data/dogsvscats/vgg16model-cows.h5')

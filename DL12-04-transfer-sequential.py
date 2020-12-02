@@ -15,7 +15,7 @@ model.add(keras.layers.Dropout(0.5))
 model.add(keras.layers.Dense(1))
 model.add(keras.layers.Activation('sigmoid'))
 
-for layer in model.layers[:19]:
+for layer in model.layers[:14]:
     layer.trainable = False
 
 model.build()

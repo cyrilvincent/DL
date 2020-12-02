@@ -15,7 +15,7 @@ tensorflow.random.set_seed(1511)
 import tensorflow.keras as keras
 model = keras.models.load_model("data/dogsvscats/cyrilmodel.h5")
 model.summary()
-#model.optimizer = keras.optimizers.SGD(nesterov=True, lr=1e-5)
+
 history = model.fit(x, y, epochs=200, batch_size=10, validation_split=0.2)
 eval = model.evaluate(x, y)
 print(eval)
