@@ -43,50 +43,50 @@ img = "data/dogsvscats/small/validation/cats/cat.1000.jpg"
 predicts = cat.predict(img)
 
 t = time.perf_counter()
-predicts = cat.predict(img) #1.4s, 71%
+predicts = cat.predict(img) #2s, 20%
 labels = cat.labels(predicts)
 print(labels)
 print(f"{labels[0][1]} {labels[0][2]*100:.1f}%")
 print(f"Predict in {time.perf_counter() - t:.1f} s")
 
 t = time.perf_counter()
-predicts = cat.predict(img,"ResNet152V2") #5s, 78% 
+predicts = cat.predict(img,"ResNet152V2") #7s, 73%
 labels = cat.labels(predicts)
 print(f"{labels[0][1]} {labels[0][2]*100:.1f}%")
 print(f"Predict in {time.perf_counter() - t:.1f} s")
 
 t = time.perf_counter()
-predicts = cat.predict(img,"VGG16") #1.8s, 71%
+predicts = cat.predict(img,"VGG16") #2s, 77%
 labels = cat.labels(predicts)
 print(f"{labels[0][1]} {labels[0][2]*100:.1f}%")
 print(f"Predict in {time.perf_counter() - t:.1f} s")
 
 t = time.perf_counter()
-predicts = cat.predict(img,"Xception") #1.6s, 79%
+predicts = cat.predict(img,"Xception") #2s, 32%
 labels = cat.labels(predicts)
 print(f"{labels[0][1]} {labels[0][2]*100:.1f}%")
 print(f"Predict in {time.perf_counter() - t:.1f} s")
 
 t = time.perf_counter()
-predicts = cat.predict(img,"InceptionV3") #2.7s, 78%
+predicts = cat.predict(img,"InceptionV3") #4s, 27%
 labels = cat.labels(predicts)
 print(f"{labels[0][1]} {labels[0][2]*100:.1f}%")
 print(f"Predict in {time.perf_counter() - t:.1f} s")
 
 t = time.perf_counter()
-predicts = cat.predict(img,"InceptionResNetV2") #6.5s, 80%
+predicts = cat.predict(img,"InceptionResNetV2") #9s, 53%
 labels = cat.labels(predicts)
 print(f"{labels[0][1]} {labels[0][2]*100:.1f}%")
 print(f"Predict in {time.perf_counter() - t:.1f} s")
 
 t = time.perf_counter()
-predicts = cat.predict(img,"NASNetLarge") #9.8s, 82%
+predicts = cat.predict(img,"NASNetLarge") #15s, 78%
 labels = cat.labels(predicts)
 print(f"{labels[0][1]} {labels[0][2]*100:.1f}%")
 print(f"Predict in {time.perf_counter() - t:.1f} s")
 
 t = time.perf_counter()
-predicts = cat.predict(img,"NASNetMobile") #6.1s, 74%
+predicts = cat.predict(img,"NASNetMobile") #10s, 22%
 labels = cat.labels(predicts)
 print(f"{labels[0][1]} {labels[0][2]*100:.1f}%")
 print(f"Predict in {time.perf_counter() - t:.1f} s")
