@@ -68,7 +68,7 @@ def train():
             trainGenerator,
             epochs=10,
             validation_data=validationGenerator,
-            steps_per_epoch=3806 / batchSize,
+            batch_size=batchSize
     )
 
     model.save('data/state-farm-distracted-driver-detection/cyrilmodel.h5')
