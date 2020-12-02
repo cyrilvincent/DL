@@ -13,7 +13,7 @@ model1 =  keras.layers.Dense(30, activation="relu")(model1)
 model1 = keras.layers.Dense(3, activation="softmax")(model1)
 
 model2 = model.output
-model2 = keras.layers.Flatten()(model1)
+model2 = keras.layers.Flatten()(model2)
 model2 = keras.layers.Dense(50, activation="relu")(model1)
 model2 = keras.layers.Dense(1, activation="sigmoid")(model1)
 

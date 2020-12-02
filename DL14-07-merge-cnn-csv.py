@@ -1,10 +1,10 @@
 
-
-from keras import applications
-from keras.preprocessing.image import ImageDataGenerator
-from keras import optimizers
-from keras.models import Sequential, Model
-from keras.layers import Dropout, Flatten, Dense, Input, Concatenate
+import tensorflow.keras as keras
+from tensorflow.keras import applications
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras import optimizers
+from tensorflow.keras.models import Sequential, Model
+from tensorflow.keras.layers import Dropout, Flatten, Dense, Input, Concatenate
 
 img_width, img_height = 150, 150
 
