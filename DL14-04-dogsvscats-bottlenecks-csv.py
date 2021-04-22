@@ -1,4 +1,3 @@
-import numpy as np
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dropout, Flatten, Dense
@@ -11,14 +10,13 @@ batch_size = 20
 datagen = ImageDataGenerator(rescale=1. / 255)
 
 model = applications.vgg16.VGG16(include_top=False, weights="imagenet", input_shape=(224, 224, 3))
-#model = Flatten()(model.output)
 newModel = Sequential()
 for l in model.layers:
     newModel.add(l)
 newModel.add(Flatten())
 model = newModel
 model.build()
-print(model.summary())
+model.summary()
 
 
 generator = datagen.flow_from_directory(
@@ -29,8 +27,6 @@ generator = datagen.flow_from_directory(
     shuffle=False)
 
 bottleneck_features_train = model.predict(generator)
-# np.savetxt(open('data/dogsvscats/vgg16-bottleneck-train.large.csv', 'w'),
-#             bottleneck_features_train, delimiter=",", newline="\n")
 with open(f"data/dogsvscats/train/db.json", "r") as f:
     db = json.loads(f.read())
 print("Save CSV")

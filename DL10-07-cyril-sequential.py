@@ -28,7 +28,6 @@ def CNNCyril():
         #Dense
         model.add(keras.layers.Flatten())
         # 25088
-        model.add(keras.layers.Dropout(0.5))
         model.add(keras.layers.Dense(512))
         model.add(keras.layers.Activation('relu'))
         model.add(keras.layers.Dropout(0.5))
