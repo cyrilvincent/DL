@@ -10,3 +10,4 @@ logs/**
 /data/dogsvscats/large/
 vgg16model*.h5
 
+/data/climate/jena_climate_2009_2016.csv
