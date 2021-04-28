@@ -1,5 +1,6 @@
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 import tensorflow as tf
 import data.climate.window_generator as wg
@@ -13,28 +14,24 @@ train_df = pd.read_csv("jena_climate_2009_2016_train.csv")
 val_df = pd.read_csv("jena_climate_2009_2016_val.csv")
 test_df = pd.read_csv("jena_climate_2009_2016_test.csv")
 
-linear = tf.keras.Sequential([
-    tf.keras.layers.Dense(units=1)
+num_features = train_df.shape[1]
+
+dense = tf.keras.Sequential([
+    tf.keras.layers.Dense(units=64, activation='relu'),
+    tf.keras.layers.Dense(units=64, activation='relu'),
+    tf.keras.layers.Dense(units=num_features),
 ])
 
 single_step_window = wg.WindowGenerator(train_df=train_df, val_df=val_df, test_df=test_df,
-    input_width=1, label_width=1, shift=1,
-    label_columns=['T (degC)'])
+    input_width=1, label_width=1, shift=1)
 
-history = wg.compile_and_fit(linear, single_step_window)
+history = wg.compile_and_fit(dense, single_step_window)
 
-linear.save("h5/linear_32_1_19__32_1_1.h5")
+dense.save("h5/dense_32_1_19__32_1_19.h5")
 
 wide_window = wg.WindowGenerator(train_df=train_df, val_df=val_df, test_df=test_df,
-    input_width=24, label_width=24, shift=1,
-    label_columns=['T (degC)'])
-
-wide_window.plot(linear)
+    input_width=24, label_width=24, shift=1)
+wide_window.plot(dense, plot_col="p (mbar)")
+wide_window.plot(dense, plot_col="T (degC)")
 plt.show()
 
-plt.bar(x = range(len(train_df.columns)),
-        height=linear.layers[0].kernel[:,0].numpy())
-axis = plt.gca()
-axis.set_xticks(range(len(train_df.columns)))
-_ = axis.set_xticklabels(train_df.columns, rotation=90)
-plt.show()

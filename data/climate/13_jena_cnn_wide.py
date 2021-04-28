@@ -4,7 +4,6 @@ import numpy as np
 import pandas as pd
 import tensorflow as tf
 import data.climate.window_generator as wg
-import data.climate.baseline as bl
 
 # https://www.tensorflow.org/tutorials/structured_data/time_series
 
@@ -33,11 +32,7 @@ conv_model = tf.keras.Sequential([
     tf.keras.layers.Dense(units=1),
 ])
 
-print('Input shape:', wide_conv_window.example[0].shape)
-print('Output shape:', conv_model(wide_conv_window.example[0]).shape)
-conv_model.summary()
-
-history = bl.compile_and_fit(conv_model, wide_conv_window)
+history = wg.compile_and_fit(conv_model, wide_conv_window)
 
 conv_model.save("h5/cnn_32_26_19__32_24_1.h5")
 

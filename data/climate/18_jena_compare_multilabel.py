@@ -31,25 +31,13 @@ wide_window = wg.WindowGenerator(train_df=train_df, val_df=val_df, test_df=test_
     input_width=24, label_width=24, shift=1,
     label_columns=['T (degC)'])
 
-linear = keras.models.load_model("h5/linear_32_1_19__32_1_1.h5")
-val_performance['Linear'] = linear.evaluate(single_step_window.val)
-performance['Linear'] = linear.evaluate(single_step_window.test, verbose=0)
-
-dense = keras.models.load_model("h5/dense_32_1_19__32_1_1.h5")
+dense = keras.models.load_model("h5/dense_32_1_19__32_1_19.h5")
 val_performance['Dense'] = dense.evaluate(single_step_window.val)
 performance['Dense'] = dense.evaluate(single_step_window.test, verbose=0)
 
-multi_step_dense = keras.models.load_model("h5/dense_32_3_19__32_1_1.h5")
-val_performance['Multi step dense'] = multi_step_dense.evaluate(conv_window.val)
-performance['Multi step dense'] = multi_step_dense.evaluate(conv_window.test, verbose=0)
-
-conv_model = keras.models.load_model("h5/cnn_32_26_19__32_24_1.h5")
-val_performance['Conv'] = conv_model.evaluate(conv_window.val)
-performance['Conv'] = conv_model.evaluate(conv_window.test, verbose=0)
-
-lstm_model = keras.models.load_model("h5/lstm_32_24_19__32_24_1.h5")
-val_performance['LSTM'] = lstm_model.evaluate(wide_window.val)
-performance['LSTM'] = lstm_model.evaluate(wide_window.test, verbose=0)
+lstm_model = keras.models.load_model("h5/lstm_32_24_19__32_24_19.h5")
+val_performance['LSTM'] = lstm_model.evaluate(conv_window.val)
+performance['LSTM'] = lstm_model.evaluate(conv_window.test, verbose=0)
 
 x = np.arange(len(performance))
 width = 0.3

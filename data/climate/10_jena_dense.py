@@ -4,7 +4,6 @@ import numpy as np
 import pandas as pd
 import tensorflow as tf
 import data.climate.window_generator as wg
-import data.climate.baseline as bl
 
 # https://www.tensorflow.org/tutorials/structured_data/time_series
 
@@ -25,12 +24,7 @@ single_step_window = wg.WindowGenerator(train_df=train_df, val_df=val_df, test_d
     input_width=1, label_width=1, shift=1,
     label_columns=['T (degC)'])
 
-print('Input shape:', single_step_window.example[0].shape)
-print('Output shape:', dense(single_step_window.example[0]).shape)
-
-dense.summary()
-
-history = bl.compile_and_fit(dense, single_step_window)
+history = wg.compile_and_fit(dense, single_step_window)
 
 dense.save("h5/dense_32_1_19__32_1_1.h5")
 

@@ -4,7 +4,6 @@ import numpy as np
 import pandas as pd
 import tensorflow as tf
 import data.climate.window_generator as wg
-import data.climate.baseline as bl
 
 # https://www.tensorflow.org/tutorials/structured_data/time_series
 
@@ -37,11 +36,7 @@ multi_step_dense = tf.keras.Sequential([
     tf.keras.layers.Reshape([1, -1]),
 ])
 
-print('Input shape:', conv_window.example[0].shape)
-print('Output shape:', multi_step_dense(conv_window.example[0]).shape)
-multi_step_dense.summary()
-
-history = bl.compile_and_fit(multi_step_dense, conv_window)
+history = wg.compile_and_fit(multi_step_dense, conv_window)
 
 multi_step_dense.save("h5/dense_32_3_19__32_1_1.h5")
 
