@@ -4,6 +4,7 @@ import tensorflow.keras as keras
 import pandas as pd
 import data.climate.window_generator as wg
 import numpy as np
+import tensorflow as tf
 
 # https://www.tensorflow.org/tutorials/structured_data/time_series
 
@@ -13,6 +14,16 @@ mpl.rcParams['axes.grid'] = False
 train_df = pd.read_csv("jena_climate_2009_2016_train.csv")
 val_df = pd.read_csv("jena_climate_2009_2016_val.csv")
 test_df = pd.read_csv("jena_climate_2009_2016_test.csv")
+
+class FeedBack(tf.keras.Model):
+  def __init__(self, units, out_steps):
+    super().__init__()
+    self.out_steps = out_steps
+    self.units = units
+    self.lstm_cell = tf.keras.layers.LSTMCell(units)
+    # Also wrap the LSTMCell in an RNN to simplify the `warmup` method.
+    self.lstm_rnn = tf.keras.layers.RNN(self.lstm_cell, return_state=True)
+    self.dense = tf.keras.layers.Dense(num_features)
 
 val_performance = {}
 performance = {}
