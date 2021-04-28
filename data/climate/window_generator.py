@@ -117,6 +117,36 @@ class WindowGenerator():
           self._example = result
       return result
 
+  @example.setter
+  def example(self, value):
+      self._example = value
+
+  def make_dataset(self, data):
+      data = np.array(data, dtype=np.float32)
+      ds = tf.keras.preprocessing.timeseries_dataset_from_array(
+          data=data,
+          targets=None,
+          sequence_length=self.total_window_size,
+          sequence_stride=1,
+          shuffle=True,
+          batch_size=32, )
+
+      ds = ds.map(self.split_window)
+
+      return ds
+
+  @property
+  def train(self):
+      return self.make_dataset(self.train_df)
+
+  @property
+  def val(self):
+      return self.make_dataset(self.val_df)
+
+  @property
+  def test(self):
+      return self.make_dataset(self.test_df)
+
 
   def __repr__(self):
     return '\n'.join([
@@ -124,3 +154,4 @@ class WindowGenerator():
         f'Input indices: {self.input_indices}',
         f'Label indices: {self.label_indices}',
         f'Label column name(s): {self.label_columns}'])
+
