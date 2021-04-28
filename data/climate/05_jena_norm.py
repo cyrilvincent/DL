@@ -12,7 +12,6 @@ df = pd.read_csv("jena_climate_2009_2016_02.csv")
 train_df = pd.read_csv("jena_climate_2009_2016_train.csv")
 val_df = pd.read_csv("jena_climate_2009_2016_val.csv")
 test_df = pd.read_csv("jena_climate_2009_2016_test.csv")
-num_features = df.shape[1]
 
 # Normalisation
 train_mean = train_df.mean()
@@ -29,3 +28,6 @@ ax = sns.violinplot(x='Column', y='Normalized', data=df_std)
 _ = ax.set_xticklabels(df.keys(), rotation=90)
 plt.show()
 
+train_df.to_csv("jena_climate_2009_2016_train.csv", index=False)
+val_df.to_csv("jena_climate_2009_2016_val.csv", index=False)
+test_df.to_csv("jena_climate_2009_2016_test.csv", index=False)

@@ -9,7 +9,6 @@ mpl.rcParams['axes.grid'] = False
 df = pd.read_csv("jena_climate_2009_2016_02.csv")
 
 # Test + Validation
-column_indices = {name: i for i, name in enumerate(df.columns)}
 n = len(df)
 train_df = df[0:int(n*0.7)]
 val_df = df[int(n*0.7):int(n*0.9)]
