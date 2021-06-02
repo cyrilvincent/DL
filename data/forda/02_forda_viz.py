@@ -4,6 +4,8 @@ import tensorflow as tf
 
 x_train, y_train, x_test, y_test = np.load("FordA.npy", allow_pickle=True)
 
+print(x_train.shape, y_train.shape)
+
 classes = np.unique(np.concatenate((y_train, y_test), axis=0))
 
 plt.figure()
