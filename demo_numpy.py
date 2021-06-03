@@ -22,7 +22,7 @@ y = dataframe_filtered.loyer
 # instanciation
 model = lm.LinearRegression() # f(x) = ax + b (a et b sont random)
 # Fit
-model.fit(x, y) # f(x) = ax + b  avec loss (convergergence)
+model.fit(x, y) # f(x) = ax + b  avec loss (convergence)
 # Predict, score = accuracy
 predict = model.predict(x)
 print("Accuracy", model.score(x, y))
