@@ -1,6 +1,9 @@
 from sklearn.datasets import load_breast_cancer
 import tensorflow.keras as keras
+import tensorflow as tf
 import pandas
+
+tf.random.set_seed(1)
 
 dataframe = pandas.read_csv("data/breast-cancer/data.csv", index_col="id")
 y = dataframe.diagnosis
@@ -23,6 +26,7 @@ predicted = model.predict(x)
 print(model.evaluate(x,y))
 
 import numpy as np
+print(predicted)
 predicted = np.where(predicted > 0.5,1,0)
 predicted = predicted.reshape(-1)
 
