@@ -2,6 +2,7 @@ from sklearn.datasets import load_breast_cancer
 import tensorflow.keras as keras
 import tensorflow as tf
 import pandas
+import sklearn.preprocessing as pp
 
 tf.random.set_seed(1)
 
@@ -13,6 +14,7 @@ print(x.shape)
 model = keras.Sequential([
     keras.layers.Dense(25, input_shape=(x.shape[1],)),
     keras.layers.Dense(20, activation="relu"),
+    keras.layers.Dense(20, activation="relu"),
     keras.layers.Dense(10, activation="relu"),
     keras.layers.Dense(1)
   ])
@@ -20,7 +22,7 @@ model = keras.Sequential([
 model.compile(loss="mse", metrics="accuracy")
 model.summary()
 
-history = model.fit(x, y, epochs=200)
+history = model.fit(x, y, epochs=200, validation_split=0.2)
 
 predicted = model.predict(x)
 print(model.evaluate(x,y))
