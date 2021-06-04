@@ -28,7 +28,7 @@ history = model.fit(X, y, epochs=50, batch_size=10, validation_split=0.2)
 eval = model.evaluate(X, y)
 print(eval)
 
-model.save("data/h5/cancer-mlp.h5")
+model.save(f"data/h5/cancer-mlp-{eval[1]:.3f}.h5")
 #model.save_weights("data/h5/cancer-mlp-weights.h5")
 
 #model.load_weights("data/h5/cancer-mlp-weights.h5") #Work only with the same model
