@@ -26,7 +26,7 @@ model = keras.Sequential([
     keras.layers.Dense(1, activation=tf.nn.sigmoid)
   ])
 
-model.compile(loss="binary_crossentropy",metrics=['accuracy'])
+model.compile(loss="mse",metrics=['accuracy'])
 model.summary()
 
 history = model.fit(x, y, epochs=200, batch_size=10, validation_split=0.2)
