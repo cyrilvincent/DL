@@ -1,13 +1,20 @@
 import sklearn.datasets
 import sklearn.preprocessing
+from sklearn.datasets import load_breast_cancer
+import tensorflow.keras as keras
+import tensorflow as tf
+import pandas
+import sklearn.preprocessing as pp
 
-cancer = sklearn.datasets.load_breast_cancer() # more info : https://goo.gl/U2Uwz2
-X=cancer['data']
-y=cancer['target']
+tf.random.set_seed(1)
+
+dataframe = pandas.read_csv("data/breast-cancer/data.csv", index_col="id")
+y = dataframe.diagnosis
+x = dataframe.drop("diagnosis", 1)
 
 scaler = sklearn.preprocessing.RobustScaler()
-scaler.fit(X)
-X = scaler.transform(X)
+scaler.fit(x)
+X = scaler.transform(x)
 
 
 
