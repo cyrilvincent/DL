@@ -1,9 +1,16 @@
 from sklearn.datasets import load_breast_cancer
-cancer = load_breast_cancer() # more info : https://goo.gl/U2Uwz2
-X=cancer['data']
-y=cancer['target']
-from sklearn.model_selection import train_test_split
-X_train,X_test,y_train,y_test = train_test_split(X,y)
+import tensorflow.keras as keras
+import tensorflow as tf
+import pandas
+import sklearn.preprocessing as pp
+
+tf.random.set_seed(1)
+
+dataframe = pandas.read_csv("data/breast-cancer/data.csv", index_col="id")
+y = dataframe.diagnosis
+x = dataframe.drop("diagnosis", 1)
+print(x.shape)
+X_train,X_test,y_train,y_test = ms.train_test_split(X,y)
 
 
 import tensorflow as tf
