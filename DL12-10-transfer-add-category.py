@@ -11,7 +11,7 @@ x = keras.layers.Dense(256, activation="relu")(x)
 x = keras.layers.Dropout(0.2)(x)
 x = keras.layers.Dense(128, activation="relu")(x)
 x = keras.layers.Dropout(0.2)(x)
-x =  keras.layers.Dense(30, activation="relu")(x)
+x = keras.layers.Dense(30, activation="relu")(x)
 x = keras.layers.Dropout(0.2)(x)
 x = keras.layers.Dense(3, activation="softmax")(x)
 

@@ -4,6 +4,7 @@ model = keras.applications.vgg16.VGG16(include_top=False, weights="imagenet", in
 newModel = keras.models.Sequential()
 for l in model.layers:
     newModel.add(l)
+    l.trainable = False
 model = newModel
 model.add(keras.layers.Flatten())
 model.add(keras.layers.Dense(512))
@@ -14,9 +15,6 @@ model.add(keras.layers.Activation('relu'))
 model.add(keras.layers.Dropout(0.5))
 model.add(keras.layers.Dense(1))
 model.add(keras.layers.Activation('sigmoid'))
-
-for layer in model.layers[:14]:
-    layer.trainable = False
 
 model.build()
 model.optimizer = keras.optimizers.SGD(nesterov=True, lr=1e-5)
