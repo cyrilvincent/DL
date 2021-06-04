@@ -14,7 +14,7 @@ def Le_Cun():
     model.add(Convolution2D(16, (3, 3), activation='relu')) #10*10*16
     model.add(AveragePooling2D((2,2), strides=(2,2))) #5*5*16
 
-    model.add(Flatten()) #160
+    model.add(Flatten()) #400
     model.add(Dense(120, activation='relu'))
     model.add(Dense(84, activation='relu'))
     model.add(Dense(10, activation='softmax'))
