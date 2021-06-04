@@ -13,12 +13,12 @@ y_train = y_train.astype("float32")
 y_test = y_test.astype("float32")
 
 x_train = (x_train - 127.5) / 127.5
-x_test /= 255
+x_test /= (x_test - 127.5) / 127.5
 
 x_train = x_train.reshape(-1,28*28)
 x_test = x_test.reshape(-1,28*28)
 
-sample = np.random.randint(60000, size=60000)
+sample = np.random.randint(2000, size=60000)
 x_train = x_train[sample]
 y_train = y_train[sample]
 
@@ -27,7 +27,8 @@ model = keras.Sequential([
     keras.layers.Dense(400, activation="relu"),
     keras.layers.Dense(200, activation="relu"),
     keras.layers.Dense(100, activation="relu"),
-    keras.layers.Dense(1),
+    keras.layers.Dense(10, activation="sigmoid"),
+    # y = [0,0,0,1,0,0,0,0,0,0,0]
   ])
 
 model.compile(loss="mse", metrics=['accuracy'])
