@@ -10,7 +10,7 @@ x = model.output
 x = keras.layers.Flatten()(x)
 x = keras.layers.Dense(30, activation="relu")(x)
 x = keras.layers.Dense(30, activation="relu")(x)
-x =  keras.layers.Dense(30, activation="relu")(x)
+x = keras.layers.Dense(30, activation="relu")(x)
 x = keras.layers.Dense(1, activation="sigmoid")(x)
 
 model = keras.models.Model(inputs=model.input, outputs=x)
