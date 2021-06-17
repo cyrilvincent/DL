@@ -28,15 +28,6 @@ print(dataframe)
 y = dataframe.diagnosis
 x = dataframe.drop("diagnosis", 1)
 
-benin_filter = y == 0
-malin_filter = y == 1
-
-print(x[benin_filter].radius_mean.describe())
-print(x[malin_filter].radius_mean.describe())
-
-print(x[benin_filter].concave_points_mean.describe())
-print(x[malin_filter].concave_points_mean.describe())
-
 np.random.seed(0)
 xtrain, xtest, ytrain, ytest = ms.train_test_split(x,y,train_size=0.8, test_size=0.2)
 
@@ -45,6 +36,7 @@ model = rf.RandomForestClassifier()
 
 model.fit(xtrain, ytrain)
 plt.bar(x.columns, model.feature_importances_)
+plt.xticks(rotation=45)
 plt.show()
 
 print(model.score(xtest, ytest))
