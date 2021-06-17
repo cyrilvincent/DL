@@ -1,45 +1,59 @@
-import sklearn
-import sklearn.datasets
-cancer = sklearn.datasets.load_breast_cancer() # more info : https://goo.gl/U2Uwz2
-
-#input
-X=cancer['data']
-y=cancer['target']
-
-print(X.shape) #569 * 30
-print(y.shape) #569
-
-from sklearn.model_selection import train_test_split
-X_train,X_test,y_train,y_test = train_test_split(X,y,train_size=0.8, test_size=0.2)
-
+import pandas as pd
+import numpy as np
+import sklearn.linear_model as lm
+import sklearn.neighbors as nn
+import sklearn.model_selection as ms
 import sklearn.ensemble as rf
-model = rf.RandomForestClassifier(n_estimators=100)
-model.fit(X_train, y_train)
-
-score = model.score(X_test, y_test)
-print(score)
-
-predicted = model.predict(X_test)
-print(predicted)
-print(y_test)
-print(predicted - y_test)
-
-print(cancer.feature_names)
-features_importances = model.feature_importances_
-print(features_importances)
-zip = list(zip(cancer.feature_names, features_importances))
-print(zip)
-
 import matplotlib.pyplot as plt
-plt.bar(range(len(features_importances)),features_importances)
+import sklearn.tree as tree
+import sklearn.svm as svm
+import sklearn.neural_network as nn
+
+
+
+# Charger breast-cancer/data.csv avec pandas read_csv(...,index_col="id")
+# y = dataframe["diagnosis"] 0=benin 1 = malin
+# x = dataframe.drop("diagnosis",1).drop("id")
+
+# Sur x
+# Chercher 2 colonnes qui gère la taille et la concavité
+# Calculer sur ces 2 colonnes min,max,mean,std,median,quantile
+# Retenez la valeurs mean et std
+# Trouver une correlation
+# x_benin = 0
+# x_malin = 1
+
+dataframe = pd.read_csv("data/breast-cancer/data.csv", index_col="id")
+print(dataframe)
+y = dataframe.diagnosis
+x = dataframe.drop("diagnosis", 1)
+
+benin_filter = y == 0
+malin_filter = y == 1
+
+print(x[benin_filter].radius_mean.describe())
+print(x[malin_filter].radius_mean.describe())
+
+print(x[benin_filter].concave_points_mean.describe())
+print(x[malin_filter].concave_points_mean.describe())
+
+np.random.seed(0)
+xtrain, xtest, ytrain, ytest = ms.train_test_split(x,y,train_size=0.8, test_size=0.2)
+
+#model = svm.SVC(C=1, kernel="rbf")
+model = rf.RandomForestClassifier()
+
+model.fit(xtrain, ytrain)
+plt.bar(x.columns, model.feature_importances_)
 plt.show()
 
-plt.figure()
-sklearn.tree.plot_tree(model.estimators_[0],
-                feature_names = cancer.feature_names,
-                class_names = cancer.target_names,
+print(model.score(xtest, ytest))
+
+tree.export_graphviz(model.estimators_[0],
+                out_file='data/breast-cancer/tree.dot',
+                feature_names = x.columns,
+                class_names = ["0", "1"],
                 rounded = True, proportion = False,
                 precision = 2, filled = True)
-plt.show()
 
 
