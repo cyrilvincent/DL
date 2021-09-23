@@ -21,7 +21,7 @@ model = keras.Sequential([
 model.compile(loss="mse", metrics="accuracy")
 model.summary()
 
-history = model.fit(x, y, epochs=200, validation_split=0.2)
+history = model.fit(x, y, epochs=200)
 
 predicted = model.predict(x)
 print(model.evaluate(x,y))
