@@ -21,6 +21,7 @@ wide_window = wg.WindowGenerator(train_df=train_df, val_df=val_df, test_df=test_
 lstm_model = tf.keras.models.Sequential([
     # Shape [batch, time, features] => [batch, time, lstm_units]
     tf.keras.layers.LSTM(32, return_sequences=True),
+    # Long Short Term Memory
     # Shape => [batch, time, features]
     tf.keras.layers.Dense(units=1)
 ])
