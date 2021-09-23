@@ -1,8 +1,7 @@
-from sklearn.datasets import load_breast_cancer
 import tensorflow.keras as keras
 import tensorflow as tf
 import pandas
-import sklearn.preprocessing as pp
+
 
 tf.random.set_seed(1)
 
@@ -13,6 +12,7 @@ print(x.shape)
 
 model = keras.Sequential([
     keras.layers.Dense(25, input_shape=(x.shape[1],)),
+    keras.layers.Dense(20, activation="relu"),
     keras.layers.Dense(20, activation="relu"),
     keras.layers.Dense(10, activation="relu"),
     keras.layers.Dense(1)
