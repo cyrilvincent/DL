@@ -3,46 +3,40 @@ import tensorflow as tf
 
 import numpy as np
 
-#D'après DL03-02-npz-mnist.py
 with np.load("data/mnist/mnist.npz", allow_pickle=True) as f:
-    x_train, y_train = f['x_train'], f['y_train'] #(60000,28,28) => (60000,784)
+    x_train, y_train = f['x_train'], f['y_train']
     x_test, y_test = f['x_test'], f['y_test']
 
+# Set numeric type to float32 from uint8
 x_train = x_train.astype("float32")
 x_test = x_test.astype("float32")
 
-x_train /= 255 # x_train = (x_train - 127.5) / 127.5
+x_train /= 255
 x_test /= 255
 
-x_train = x_train.reshape(-1,28*28) # 28*28 = 784
+x_train = x_train.reshape(-1,28*28)
 x_test = x_test.reshape(-1,28*28)
 
-sample = np.random.randint(60000, size=1000)
+y_train = keras.utils.to_categorical(y_train)
+y_test = keras.utils.to_categorical(y_test)
+
+sample = np.random.randint(60000, size=60000)
 x_train = x_train[sample]
 y_train = y_train[sample]
 
-#Topologie
-#MLP
-#TrainSet : 48000
-#ValidationSet = 12000
-#TestSet : 10000
-#HiddenLayer : 4
-#Input : 28x28 = 784
-#Output : 1
-#Topologie en V en =
-#epochs=? batch_size=1 et 10
-#Comparer accuracy et val_accuracy
-#20%
+model = None
 
+trained = model.fit(x_train, y_train, epochs=200, batch_size=2,validation_data=(x_test, y_test))
+print(model.summary())
 
-model = None #TODO
-
-predicted = None #TODO résulat de la prédiction sur le jeu de test
-
+predicted = model.predict(x_test)
 import matplotlib.pyplot as plt
-misclass = (y_test != predicted.reshape(-1))
-images = x_test.reshape((-1, 28, 28))
-misclass_images = images[misclass,:,:]
+# Gestion des erreurs
+# on récupère les données mal prédites
+predicted = predicted.argmax(axis=1)
+misclass = (y_test.argmax(axis=1) != predicted)
+x_test = x_test.reshape((-1, 28, 28))
+misclass_images = x_test[misclass,:,:]
 misclass_predicted = predicted[misclass]
 
 # on sélectionne un échantillon de ces images
@@ -56,5 +50,4 @@ for index, value in enumerate(select):
     plt.title('Predicted: %i' % misclass_predicted[value])
 
 plt.show()
-
 
