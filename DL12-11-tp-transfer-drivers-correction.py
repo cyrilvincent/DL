@@ -24,7 +24,7 @@ model.compile(loss='categorical_crossentropy',
 
 trainset = keras.preprocessing.image.ImageDataGenerator(rescale=1. / 255, validation_split=0.2)
 
-batchSize = 16
+batchSize = 8
 
 trainGenerator = trainset.flow_from_directory(
         'data/state-farm-distracted-driver-detection/train-224',
