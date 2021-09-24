@@ -8,17 +8,17 @@ def Chollet():
         model.add(keras.layers.Conv2D(32, (3, 3), input_shape=(150, 150, 3)))
         model.add(keras.layers.Activation('relu'))
         model.add(keras.layers.MaxPooling2D(pool_size=(2, 2)))
-        # 32, 32, 32
+        # 64, 64, 32
 
         model.add(keras.layers.Conv2D(32, (3, 3)))
         model.add(keras.layers.Activation('relu'))
         model.add(keras.layers.MaxPooling2D(pool_size=(2, 2)))
-        # 16, 16, 32
+        # 32, 32, 32
 
         model.add(keras.layers.Conv2D(64, (3, 3)))
         model.add(keras.layers.Activation('relu'))
         model.add(keras.layers.MaxPooling2D(pool_size=(2, 2)))
-        # 8, 8, 64
+        # 16, 16, 64
 
         #Dense
         model.add(keras.layers.Flatten())

@@ -49,7 +49,7 @@ model.summary()
 hist = model.fit(x=x_train,y=y_train, epochs=10, batch_size=16, validation_data=(x_test, y_test))
 
 #model.save_weights('data/h5/cholletmodel-mnist-weights.h5') # 97.5%
-#model.save('data/h5/cholletmodel-mnist.h5') # 97.5%
+model.save('data/h5/cholletmodel-mnist.h5') # 97.5%
 
 import matplotlib.pyplot as plt
 f, ax = plt.subplots()
