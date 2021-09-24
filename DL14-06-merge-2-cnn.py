@@ -8,7 +8,7 @@ model2f = keras.layers.Flatten()(model2.output)
 x = keras.layers.concatenate([model1f, model2f])
 x = keras.layers.Dense(30, activation="relu")(x)
 x = keras.layers.Dense(30, activation="relu")(x)
-x =  keras.layers.Dense(30, activation="relu")(x)
+x = keras.layers.Dense(30, activation="relu")(x)
 x = keras.layers.Dense(3, activation="softmax")(x)
 
 model = keras.models.Model(inputs=(model1.input, model2.input), outputs=x)
