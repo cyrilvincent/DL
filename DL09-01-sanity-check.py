@@ -23,10 +23,10 @@ def check():
 
     python_version = sys.version_info.major, sys.version_info.minor
     print("- Python version is %d.%d." % python_version)
-    if not (python_version == (3, 5) or python_version == (3, 6)):
+    if not (python_version == (3, 8) or python_version == (3, 9)):
         candidate_explanation = True
         print("- The official distribution of TensorFlow for Windows requires "
-          "Python version 3.5 or 3.6.")
+          "Python version 3.8 or 3.9.")
 
     try:
         _, pathname, _ = imp.find_module("tensorflow")
@@ -48,14 +48,14 @@ install it using the command `pip install tensorflow`.""")
   https://www.microsoft.com/en-us/download/details.aspx?id=53587""")
 
     try:
-        cudart64_101 = ctypes.WinDLL("cudart64_101.dll")
-        cudart64_101_path = find_library("cudart64_101.dll")
-        print('- Cuda 10.1 found at {}'.format(cudart64_101_path))
+        cudart64_101 = ctypes.WinDLL("cudart64_110.dll")
+        cudart64_101_path = find_library("cudart64_110.dll")
+        print('- Cuda 110 found at {}'.format(cudart64_101_path))
         # TODO: Look for version.txt file in CUDA path
     except OSError:
         candidate_explanation = True
         print("""
-- Could not load 'cudart64_101.dll'. Download and install CUDA 10.1 from
+- Could not load 'cudart64_110.dll'. Download and install CUDA 10.1 from
   this URL: https://developer.nvidia.com/cuda-toolkit""")
 
     try:
