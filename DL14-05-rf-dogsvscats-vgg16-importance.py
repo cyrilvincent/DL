@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv("data/dogsvscats/vgg16-bottleneck-train.large.csv")
+df = pd.read_csv("data/dogsvscats/vgg16-bottleneck-train.small.csv")
 print(df.head())
 x = df.iloc[:,2:]
 y = df.iloc[:,1]
@@ -11,6 +11,7 @@ import sklearn.ensemble as rf
 model = rf.RandomForestClassifier(n_estimators=100)
 print("Fit")
 model.fit(X_train, y_train)
+print(model.score(X_test, y_test))
 
 filter_importances = []
 i = 0

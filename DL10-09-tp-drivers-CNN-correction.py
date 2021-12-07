@@ -48,7 +48,7 @@ def train():
     trainset = keras.preprocessing.image.ImageDataGenerator(rescale=1. / 255, validation_split=0.2,shear_range=0.2
         )
 
-    batchSize = 4
+    batchSize = 8
 
     trainGenerator = trainset.flow_from_directory(
             'data/state-farm-distracted-driver-detection/train-224',
@@ -66,7 +66,7 @@ def train():
 
     model.fit(
             trainGenerator,
-            epochs=10,
+            epochs=20,
             validation_data=validationGenerator,
             batch_size=batchSize
     )
