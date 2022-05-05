@@ -16,7 +16,7 @@ model = keras.Sequential([
 model.compile(loss="mse") #Mean Square Error
 model.summary()
 
-history = model.fit(X, y, epochs=100, batch_size=1)
+model.fit(X, y, epochs=100, batch_size=1)
 
 res = model.predict(X)
 print(res)

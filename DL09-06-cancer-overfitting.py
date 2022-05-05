@@ -18,13 +18,19 @@ model = keras.Sequential([
     keras.layers.Dense(30, activation=tf.nn.relu),
     keras.layers.Dense(30, activation=tf.nn.relu),
     keras.layers.Dense(30, activation=tf.nn.relu),
+    keras.layers.Dense(30, activation=tf.nn.relu),
+    keras.layers.Dense(30, activation=tf.nn.relu),
+    keras.layers.Dense(30, activation=tf.nn.relu),
+    keras.layers.Dense(30, activation=tf.nn.relu),
+    keras.layers.Dense(30, activation=tf.nn.relu),
+    keras.layers.Dense(30, activation=tf.nn.relu),
     keras.layers.Dense(1)
   ])
 
 model.compile(loss="mse", optimizer="rmsprop",metrics=['accuracy'])
 model.summary()
 
-hist = model.fit(x, y, epochs=200, batch_size=10)
+hist = model.fit(x, y, epochs=10, batch_size=1)
 eval = model.evaluate(x, y)
 print(eval)
 
