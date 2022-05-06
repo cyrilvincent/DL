@@ -1,4 +1,3 @@
-import tensorflow.keras as keras
 import tensorflow as tf
 import pandas
 import sklearn.preprocessing

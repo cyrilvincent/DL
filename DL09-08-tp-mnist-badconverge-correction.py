@@ -10,6 +10,7 @@ with np.load("data/mnist/mnist.npz", allow_pickle=True) as f:
 x_train = x_train.astype("float32")
 x_test = x_test.astype("float32")
 y_train = y_train.astype("float32")
+y_train = keras.utils.to_categorical(y_train)
 y_test = y_test.astype("float32")
 
 x_train = (x_train - 127.5) / 127.5
@@ -29,7 +30,7 @@ model = keras.Sequential([
     keras.layers.Dense(400, activation="relu"),
     keras.layers.Dense(200, activation="relu"),
     keras.layers.Dense(100, activation="relu"),
-    keras.layers.Dense(1),
+    keras.layers.Dense(10),
   ])
 
 model.compile(loss="mse", metrics=['accuracy'])
