@@ -37,13 +37,13 @@ model = keras.Sequential([
   ])
 
 model.compile(loss="categorical_crossentropy", metrics=['accuracy'])
-trained = model.fit(x_train, y_train, epochs=20, batch_size=10,validation_data=(x_test, y_test))
+trained = model.fit(x_train, y_train, epochs=20, batch_size=10, validation_data=(x_test, y_test))
 print(model.evaluate(x_test, y_test))
 model.save("data/h5/mnist_mlp_dropout_rms.h5")
 
 sgd = keras.optimizers.SGD(nesterov=True, lr=1e-4)
 model.compile(loss="categorical_crossentropy", optimizer=sgd, metrics=['accuracy'])
-trained = model.fit(x_train, y_train, epochs=20, batch_size=10,validation_data=(x_test, y_test))
+trained = model.fit(x_train, y_train, epochs=20, batch_size=10, validation_data=(x_test, y_test))
 print(model.evaluate(x_test, y_test))
 predicted = model.predict(x_test)
 model.save("data/h5/mnist_mlp_dropout_sgd.h5")

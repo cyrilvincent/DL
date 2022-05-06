@@ -16,7 +16,7 @@ scaler.fit(x)
 X = scaler.transform(x)
 
 model = keras.Sequential([
-    keras.layers.Dense(30, activation=tf.nn.relu,
+    keras.layers.Dense(40, activation=tf.nn.relu,
                        input_shape=(X.shape[1],)),
     keras.layers.Dropout(0.5),
     keras.layers.Dense(30, activation=tf.nn.relu),

@@ -27,7 +27,6 @@ y_train = y_train[sample]
 model = None
 
 trained = model.fit(x_train, y_train, epochs=200, batch_size=2,validation_data=(x_test, y_test))
-print(model.summary())
 
 predicted = model.predict(x_test)
 import matplotlib.pyplot as plt
