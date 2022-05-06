@@ -7,6 +7,7 @@ from tensorflow.keras.applications.mobilenet_v2 import MobileNetV2
 
 # load the model
 model = MobileNetV2()
+model.summary()
 
 # load an image from file
 image = load_img('data/img/mug.jpg', target_size=(224, 224))

@@ -1,21 +1,12 @@
 import tensorflow.keras as keras
 
-model = keras.applications.vgg16.VGG16(include_top=False, weights="imagenet", input_shape=(224, 224, 3))
+model = keras.models.load_model('data/dogsvscats/vgg16model-small.h5')
 
-for layer in model.layers:
+for layer in model.layers[:-1]:
     layer.trainable = False
 
-x = model.output
-x = keras.layers.Flatten()(x)
-x = keras.layers.Dense(256, activation="relu")(x)
-x = keras.layers.Dropout(0.2)(x)
-x = keras.layers.Dense(128, activation="relu")(x)
-x = keras.layers.Dropout(0.2)(x)
-x = keras.layers.Dense(30, activation="relu")(x)
-x = keras.layers.Dropout(0.2)(x)
-x = keras.layers.Dense(3, activation="softmax")(x)
-
-model = keras.models.Model(inputs=model.input, outputs=x)
+model.add(keras.layers.Dense(3))
+model.add(keras.layers.Activation('softmax'))
 
 model.summary()
 
@@ -33,7 +24,7 @@ batchSize = 16
 trainGenerator = trainset.flow_from_directory(
         'data/dogsvscats/small/train',
         target_size=(224, 224),
-        subset = 'training',
+        subset='training',
         class_mode="categorical",
         batch_size=batchSize)
 
@@ -52,8 +43,5 @@ model.fit(
 )
 
 model.save('data/dogsvscats/vgg16model-cows.h5')
-model.save_weights('data/dogsvscats/vgg16model-cows-weights.h5')
-
-
 
 
