@@ -10,15 +10,16 @@ print(np.__version__)
 print(sklearn.__version__)
 
 dataframe = pd.read_csv("data/house/house.csv")
-print(dataframe)
+print(dataframe.describe())
+
 
 x = dataframe.surface.values.reshape(-1,1)
 y = dataframe.loyer
 
 model = lm.LinearRegression()
 model.fit(x, y)
-
 predicted = model.predict(x)
+print(model.coef_, model.intercept_)
 
 plt.scatter(x, y)
 plt.plot(x, predicted, color="red")
