@@ -15,6 +15,7 @@ x_train = x_train[sample]
 y_train = y_train[sample]
 
 model = nn.KNeighborsClassifier(n_neighbors=3)
+# Tester avec RandomForest et SVM
 model.fit(x_train, y_train)
 print(model.score(x_train, y_train))
 
