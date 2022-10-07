@@ -1,3 +1,5 @@
+import pickle
+
 import pandas as pd
 import sklearn.neighbors as nn
 import sklearn.ensemble as rf
@@ -23,6 +25,15 @@ predicted = model.predict(xtest)
 print(predicted)
 print(model.score(xtrain, ytrain))
 print(model.score(xtest, ytest))
+
+with open("data/breast-cancer/model.pickle", "wb") as f:
+    pickle.dump(model, f)
+
+model = None
+
+with open("data/breast-cancer/model.pickle", "rb") as f:
+    model = pickle.load(f)
+
 # Créer le modèle
 # Fitter le modéle
 # Prédire x
