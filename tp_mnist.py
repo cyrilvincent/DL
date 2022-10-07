@@ -1,23 +1,31 @@
-import numpy as np
+import pickle
+import pandas as pd
 import sklearn.neighbors as nn
+import sklearn.ensemble as rf
+import matplotlib.pyplot as plt
+import sklearn.model_selection as ms
+import numpy as np
+import sklearn.svm as svm
 
 np.random.seed(0)
 
 with np.load("data/mnist/mnist.npz", allow_pickle=True) as f:
-    x_train, y_train = f["x_train"], f["y_train"]
-    x_test, y_test = f["x_test"], f["y_test"]
+    x_train, y_train = f["x_train"], f["y_train"] # 60000
+    x_test, y_test = f["x_test"], f["y_test"] # 10000
 
 x_train = x_train.reshape(-1,28*28)
 x_test = x_test.reshape(-1,28*28)
 
-sample = np.random.randint(60000, size=5000)
-x_train = x_train[sample]
-y_train = y_train[sample]
+# sample = np.random.randint(60000, size=5000)
+# x_train = x_train[sample]
+# y_train = y_train[sample]
 
-model = nn.KNeighborsClassifier(n_neighbors=3)
+# model = nn.KNeighborsClassifier(n_neighbors=3)
 # Tester avec RandomForest et SVM
+# model = rf.RandomForestClassifier()
+model = svm.SVC(C=1, kernel="rbf")
 model.fit(x_train, y_train)
-print(model.score(x_train, y_train))
+print(model.score(x_test, y_test))
 
 predicted = model.predict(x_test)
 
