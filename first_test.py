@@ -1,11 +1,11 @@
+import sys
+import pandas as pd
 import numpy as np
 import tensorflow as tf
-import sys
-
-# pip install numpy
-# pip install pandas
-# pip install tensorflow
 
 print("Deep Learning")
-print(sys.version, np.__version__, tf.__version__)
+print(sys.version)
+print(pd.__version__)
+print(np.__version__)
+print(tf.__version__)
 
