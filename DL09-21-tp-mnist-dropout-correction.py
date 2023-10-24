@@ -31,12 +31,12 @@ model = tf.keras.Sequential([
     tf.keras.layers.Dense(10, activation=tf.nn.softmax),
   ])
 model.compile(loss="categorical_crossentropy", metrics=['accuracy'])
-trained = model.fit(x_train, y_train, epochs=20, batch_size=10,validation_data=(x_test, y_test))
+trained = model.fit(x_train, y_train, epochs=5, batch_size=10,validation_data=(x_test, y_test))
 print(model.summary())
 
 predicted = model.predict(x_test)
 
-# Sauvegarder le model
+model.save("data/h5/mnist.h5")
 
 import matplotlib.pyplot as plt
 # Gestion des erreurs

@@ -27,7 +27,9 @@ print(model.summary())
 
 predicted = model.predict(x_test)
 
+# 15h05
 # Sauvegarder le model
+# L'ouvrir sur Netron
 
 import matplotlib.pyplot as plt
 # Gestion des erreurs
