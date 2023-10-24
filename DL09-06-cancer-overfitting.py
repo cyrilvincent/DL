@@ -16,6 +16,11 @@ model = tf.keras.Sequential([
     tf.keras.layers.Dense(1)
   ])
 
+# 570 data => 2 à 3 layers
+# 30 colonnes => == =>
+# 1 résultat
+# Tester en V, avec 1 layer, avec 5 layers, 10, 20
+
 model.compile(loss="mse", optimizer="rmsprop",metrics=['accuracy'])
 model.summary()
 
