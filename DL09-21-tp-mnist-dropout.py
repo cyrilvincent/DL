@@ -19,10 +19,6 @@ x_test = x_test.reshape(-1,28*28)
 y_train = tf.keras.utils.to_categorical(y_train)
 y_test = tf.keras.utils.to_categorical(y_test)
 
-sample = np.random.randint(60000, size=5000)
-x_train = x_train[sample]
-y_train = y_train[sample]
-
 model = None # TODO
 
 model.compile(loss="categorical_crossentropy", metrics=['accuracy'])
