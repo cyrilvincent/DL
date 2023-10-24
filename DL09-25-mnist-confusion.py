@@ -32,7 +32,7 @@ model = tf.keras.Sequential([
   ])
 
 model.compile(loss="categorical_crossentropy", metrics=['accuracy'])
-trained = model.fit(x_train, y_train, epochs=10, batch_size=10,validation_data=(x_test, y_test))
+trained = model.fit(x_train, y_train, epochs=1, batch_size=10,validation_data=(x_test, y_test))
 print(model.summary())
 
 predicted = model.predict(x_test)

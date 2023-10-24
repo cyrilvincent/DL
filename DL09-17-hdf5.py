@@ -25,7 +25,7 @@ model = tf.keras.Sequential([
 model.compile(loss="binary_crossentropy",metrics=['accuracy'])
 model.summary()
 
-history = model.fit(x, y, epochs=50, batch_size=10, validation_split=0.2)
+history = model.fit(x, y, epochs=20, batch_size=10, validation_split=0.2)
 eval = model.evaluate(x, y)
 print(eval)
 

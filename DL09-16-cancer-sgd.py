@@ -13,18 +13,16 @@ scaler = sklearn.preprocessing.RobustScaler()
 scaler.fit(x)
 X = scaler.transform(x)
 
-y = tf.keras.utils.to_categorical(y)
-
 model = tf.keras.Sequential([
     tf.keras.layers.Dense(30, activation=tf.nn.relu,
                        input_shape=(x.shape[1],)),
     tf.keras.layers.Dense(30, activation=tf.nn.relu),
     tf.keras.layers.Dense(30, activation=tf.nn.relu),
-    tf.keras.layers.Dense(2, activation=tf.nn.softmax)
+    tf.keras.layers.Dense(1, activation=tf.nn.sigmoid)
   ])
 
 sgd = tf.keras.optimizers.SGD(nesterov=True, lr=1e-4) # Ne converge pas car pas assez de data
-model.compile(loss="binary_crossentropy", optimizer=sgd,metrics=['accuracy'])
+model.compile(loss="binary_crossentropy", optimizer=sgd, metrics=['accuracy'])
 # for 2 categories bce ~= cce
 model.summary()
 
