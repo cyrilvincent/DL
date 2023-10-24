@@ -8,7 +8,7 @@ np.random.seed(1)
 
 dataframe = pd.read_csv("data/breast-cancer/data.csv", index_col="id")
 y = dataframe.diagnosis
-x = dataframe.drop("diagnosis", 1)
+x = dataframe.drop(["diagnosis"], 1)
 
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = ms.train_test_split(x, y, train_size=0.8, test_size=0.2)
@@ -16,7 +16,6 @@ X_train, X_test, y_train, y_test = ms.train_test_split(x, y, train_size=0.8, tes
 model = tf.keras.Sequential([
     tf.keras.layers.Dense(30, activation=tf.nn.relu,
                        input_shape=(X_train.shape[1],)),
-    tf.keras.layers.Dense(30, activation=tf.nn.relu),
     tf.keras.layers.Dense(30, activation=tf.nn.relu),
     tf.keras.layers.Dense(1)
   ])
