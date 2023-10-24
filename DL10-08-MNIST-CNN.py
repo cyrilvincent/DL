@@ -1,4 +1,4 @@
-import tensorflow.keras as keras
+import tensorflow as tf
 
 import numpy as np
 
@@ -14,32 +14,32 @@ x_train /= 255
 x_test /= 255
 
 # Transform labels to one-hot encoding
-y_train = keras.utils.to_categorical(y_train, 10)
-y_test = keras.utils.to_categorical(y_test, 10)
+y_train = tf.keras.utils.to_categorical(y_train, 10)
+y_test = tf.keras.utils.to_categorical(y_test, 10)
 
 # Reshape the dataset into 4D array
 x_train = x_train.reshape(x_train.shape[0], 28,28,1)
 x_test = x_test.reshape(x_test.shape[0], 28,28,1)
 
-model = keras.models.Sequential()
-model.add(keras.layers.Conv2D(16, (3, 3), input_shape=(28, 28, 1), padding="same")) # 28,28,16
-model.add(keras.layers.Activation('relu'))
-model.add(keras.layers.MaxPooling2D(pool_size=(2, 2))) # 14,14,16
+model = tf.keras.models.Sequential()
+model.add(tf.keras.layers.Conv2D(16, (3, 3), input_shape=(28, 28, 1), padding="same")) # 28,28,16
+model.add(tf.keras.layers.Activation('relu'))
+model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 2))) # 14,14,16
 
-model.add(keras.layers.Conv2D(16, (3, 3))) # 10,10,16
-model.add(keras.layers.Activation('relu'))
-model.add(keras.layers.MaxPooling2D(pool_size=(2, 2))) # 5,5,16
+model.add(tf.keras.layers.Conv2D(16, (3, 3))) # 10,10,16
+model.add(tf.keras.layers.Activation('relu'))
+model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 2))) # 5,5,16
 
 #Dense
-model.add(keras.layers.Flatten()) # 400
-model.add(keras.layers.Dense(128))
-model.add(keras.layers.Activation('relu'))
-model.add(keras.layers.Dropout(0.5))
-model.add(keras.layers.Dense(64))
-model.add(keras.layers.Activation('relu'))
-model.add(keras.layers.Dropout(0.5))
-model.add(keras.layers.Dense(10))
-model.add(keras.layers.Activation('softmax'))
+model.add(tf.keras.layers.Flatten()) # 400
+model.add(tf.keras.layers.Dense(128))
+model.add(tf.keras.layers.Activation('relu'))
+model.add(tf.keras.layers.Dropout(0.5))
+model.add(tf.keras.layers.Dense(64))
+model.add(tf.keras.layers.Activation('relu'))
+model.add(tf.keras.layers.Dropout(0.5))
+model.add(tf.keras.layers.Dense(10))
+model.add(tf.keras.layers.Activation('softmax'))
 
 model.compile(loss='categorical_crossentropy',
               optimizer='rmsprop',
@@ -48,7 +48,6 @@ model.summary()
 
 hist = model.fit(x=x_train,y=y_train, epochs=10, batch_size=16, validation_data=(x_test, y_test))
 
-#model.save_weights('data/h5/cholletmodel-mnist-weights.h5') # 97.5%
 model.save('data/h5/cholletmodel-mnist.h5') # 97.5%
 
 import matplotlib.pyplot as plt

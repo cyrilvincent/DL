@@ -39,8 +39,7 @@ def train():
     model.summary()
     #keras.utils.plot_model(model, to_file='data/h5/model.png', show_shapes=True, show_layer_names=True)
 
-    trainset = keras.preprocessing.image.ImageDataGenerator(rescale=1. / 255, validation_split=0.2,
-        )
+    trainset = keras.preprocessing.image.ImageDataGenerator(rescale=1. / 255, validation_split=0.2,)
 
     batchSize = 16
 
@@ -65,7 +64,6 @@ def train():
     )
 
     #model.save('data/dogsvscats/cholletmodel.h5')
-    #model.save_weights('data/dogsvscats/cholletmodel-weights.h5')
 
     # 25 * 8s 81ms/step - loss: 0.4310 - accuracy: 0.8044 - val_loss: 0.5018 - val_accuracy: 0.7500
 
