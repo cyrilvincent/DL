@@ -13,14 +13,6 @@ model = tf.keras.Sequential([
                        input_shape=(x.shape[1],)),
     tf.keras.layers.Dense(30, activation=tf.nn.relu),
     tf.keras.layers.Dense(30, activation=tf.nn.relu),
-    tf.keras.layers.Dense(30, activation=tf.nn.relu),
-    tf.keras.layers.Dense(30, activation=tf.nn.relu),
-    tf.keras.layers.Dense(30, activation=tf.nn.relu),
-    tf.keras.layers.Dense(30, activation=tf.nn.relu),
-    tf.keras.layers.Dense(30, activation=tf.nn.relu),
-    tf.keras.layers.Dense(30, activation=tf.nn.relu),
-    tf.keras.layers.Dense(30, activation=tf.nn.relu),
-
     tf.keras.layers.Dense(1)
   ])
 
