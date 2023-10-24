@@ -1,6 +1,7 @@
+import sklearn.preprocessing
+
 import tensorflow as tf
 import pandas
-import sklearn.preprocessing
 
 
 tf.random.set_seed(1)
@@ -11,20 +12,24 @@ x = dataframe.drop("diagnosis", 1)
 
 scaler = sklearn.preprocessing.RobustScaler()
 scaler.fit(x)
-x = scaler.transform(x)
+X = scaler.transform(x)
 
 model = tf.keras.Sequential([
     tf.keras.layers.Dense(30, activation=tf.nn.relu,
-                       input_shape=(x.shape[1],)),
+                       input_shape=(X.shape[1],)),
     tf.keras.layers.Dense(30, activation=tf.nn.relu),
     tf.keras.layers.Dense(30, activation=tf.nn.relu),
-    tf.keras.layers.Dense(1)
+    tf.keras.layers.Dense(1, activation=tf.nn.sigmoid)
   ])
 
-model.compile(loss="mse",metrics=['accuracy'])
+model.compile(loss="binary_crossentropy",metrics=['accuracy'])
 model.summary()
 
-history = model.fit(x, y, epochs=20, batch_size=1, validation_split=0.2)
+history = model.fit(x, y, epochs=50, batch_size=10, validation_split=0.2)
 eval = model.evaluate(x, y)
 print(eval)
+
+model.save("data/h5/cancer-mlp.h5")
+
+# model = tf.keras.models.load_model("data/h5/cancer-mlp.h5") #No need to have the model structure
 

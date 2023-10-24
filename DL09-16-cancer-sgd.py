@@ -1,6 +1,6 @@
+import sklearn.preprocessing
 import tensorflow as tf
 import pandas
-import sklearn.preprocessing
 
 
 tf.random.set_seed(1)
@@ -11,20 +11,24 @@ x = dataframe.drop("diagnosis", 1)
 
 scaler = sklearn.preprocessing.RobustScaler()
 scaler.fit(x)
-x = scaler.transform(x)
+X = scaler.transform(x)
+
+y = tf.keras.utils.to_categorical(y)
 
 model = tf.keras.Sequential([
     tf.keras.layers.Dense(30, activation=tf.nn.relu,
                        input_shape=(x.shape[1],)),
     tf.keras.layers.Dense(30, activation=tf.nn.relu),
     tf.keras.layers.Dense(30, activation=tf.nn.relu),
-    tf.keras.layers.Dense(1)
+    tf.keras.layers.Dense(2, activation=tf.nn.softmax)
   ])
 
-model.compile(loss="mse",metrics=['accuracy'])
+sgd = tf.keras.optimizers.SGD(nesterov=True, lr=1e-4) # Ne converge pas car pas assez de data
+model.compile(loss="binary_crossentropy", optimizer=sgd,metrics=['accuracy'])
+# for 2 categories bce ~= cce
 model.summary()
 
 history = model.fit(x, y, epochs=20, batch_size=1, validation_split=0.2)
 eval = model.evaluate(x, y)
 print(eval)
-
+print(f"Total accuracy: {history.history['val_accuracy'][-1]*100:.2f}%")

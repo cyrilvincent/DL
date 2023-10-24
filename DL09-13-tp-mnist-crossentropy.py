@@ -16,11 +16,10 @@ x_test = x_test.astype("float32")
 x_train = x_train.reshape(-1,28*28)
 x_test = x_test.reshape(-1,28*28)
 
-y_train = tf.keras.utils.to_categorical(y_train)
+# y_train = # to_categorical
 # y_test =
 
 model = None # TODO
-# Compile => categorical_crossentropy
 print(model.summary())
 
 predicted = model.predict(x_test)
