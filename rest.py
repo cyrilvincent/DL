@@ -1,16 +1,19 @@
 from flask import Flask, request, jsonify
 import tensorflow as tf
-from datetime import datetime
 
 app = Flask(__name__)
+model: tf.keras.Sequential = tf.keras.models.load_model("data/h5/cancer-mlp.h5")
 
 @app.route("/")
 def root():
     return jsonify(tf.__version__)
 
-@app.route("/version")
-def version():
-    return "hello"
+@app.route("/cancer", methods = ['POST'])
+def cancer():
+    features = request.json
+    res = model.predict(features)
+    print(res)
+    return jsonify(float(res[0][0]))
 
 # @app.route("/version", methods = ['POST'])
 # def hough():
