@@ -13,17 +13,42 @@ x_test = x_test.astype("float32")
 x_train /= 255
 x_test /= 255
 
+class Rectangle:
+
+  def __init__(self, width, length):
+    self.width = width
+    self.length = length
+
+  def area(self):
+    return self.width * self.length
+
+  def perimeter(self):
+    return 2 * (self.width + self.length)
+
+class Square(Rectangle):
+
+  def __init__(self, side):
+    super().__init__(side, side)
+
+
+r1 = Rectangle(3,2)
+print(r1.area())
+s1 = Square(4)
+print(s1.area())
+
+
+
 latent_dim = 64
 class Autoencoder(tf.keras.Model):
   def __init__(self, latent_dim):
-    super(Autoencoder, self).__init__()
+    super().__init__()
     self.latent_dim = latent_dim
     self.encoder = tf.keras.Sequential([
-      tf.keras.layers.Flatten(),
+      tf.keras.layers.Flatten(), # tf.keras.layers.Reshape(28*28)
       tf.keras.layers.Dense(latent_dim, activation='relu'),
     ])
     self.decoder = tf.keras.Sequential([
-      tf.keras.layers.Dense(784, activation='sigmoid'),
+      tf.keras.layers.Dense(28*28, activation='sigmoid'),
       tf.keras.layers.Reshape((28, 28))
     ])
 
