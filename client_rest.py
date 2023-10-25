@@ -1,5 +1,4 @@
 import requests
-import os
 
 print("Cancer")
 url = 'http://127.0.0.1:5000/cancer'

@@ -16,6 +16,7 @@ def root():
 @app.route("/cancer", methods = ['POST'])
 def cancer():
     features = request.json
+    # Normaliser features
     res = model.predict(features)
     print(res)
     return jsonify(float(res[0][0]))
