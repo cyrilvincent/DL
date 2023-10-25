@@ -35,6 +35,9 @@ xtrain, xtest, ytrain, ytest = ms.train_test_split(x,y,train_size=0.8, test_size
 model = rf.RandomForestClassifier()
 
 model.fit(xtrain, ytrain)
+score = model.score(xtest, ytest)
+print(f"Score: {score}")
+
 plt.bar(x.columns, model.feature_importances_)
 plt.xticks(rotation=45)
 plt.show()
