@@ -1,10 +1,9 @@
 import tensorflow as tf
 import matplotlib.pyplot as plt
 import numpy as np
+from keras.datasets import fashion_mnist
 
-with np.load("data/mnist/mnist.npz", allow_pickle=True) as f:
-    x_train = f['x_train']
-    x_test = f['x_test']
+(x_train, _), (x_test, _) = fashion_mnist.load_data()
 
 x_train = x_train.astype('float32') / 255.
 x_test = x_test.astype('float32') / 255.
@@ -15,7 +14,7 @@ x_test = x_test[..., tf.newaxis]
 print(x_train.shape)
 
 # Add noise
-noise_factor = 0.15
+noise_factor = 0.2
 x_train_noisy = x_train + noise_factor * tf.random.normal(shape=x_train.shape)
 x_test_noisy = x_test + noise_factor * tf.random.normal(shape=x_test.shape)
 x_train_noisy = tf.clip_by_value(x_train_noisy, clip_value_min=0., clip_value_max=1.)
